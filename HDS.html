@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<!-- 语言属性将由JS动态更改 -->
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 标题也将由JS动态更改 -->
+    <title data-key="site-title">HDS (Singapore) | 面向未来的基础设施</title>
+    
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 引入 Inter 字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- 自定义Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'Noto Sans SC', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-dark': '#001E42', // 深蓝
+                        'brand-primary': '#0D61FE', // 主品牌蓝
+                        'brand-accent': '#00C795', // 亮绿 (CTA)
+                        'brand-accent-hover': '#00ae81',
+                        'brand-light': '#FFFFFF', // 白色
+                        'brand-gray': '#F5F7FA', // 浅灰背景
+                    },
+                },
+            },
+        }
+    </script>
+
+    <style>
+        /* 确保中文字体和英文字体都能正确应用 */
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* 隐藏所有页面，默认只显示首页 */
+        .page-content {
+            display: none;
+        }
+        #home {
+            display: block;
+        }
+        
+        /* 语言切换的活动状态 */
+        .lang-switcher a.active {
+            color: #0D61FE; /* brand-primary */
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body class="bg-brand-light text-gray-900">
+
+    <!-- 1. 顶部导航栏 -->
+    <header class="bg-brand-light/95 backdrop-blur-md sticky top-0 z-50 w-full shadow-sm">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- 1.1 Logo -->
+                <a href="#" class="flex-shrink-0 flex items-center" onclick="showPage('home')">
+                    <span class="text-2xl font-bold text-brand-dark">
+                        HDS<span class="text-brand-primary">(Singapore)</span>
+                    </span>
+                </a>
+
+                <!-- 1.2 桌面导航 (Desktop Menu) -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#" class="nav-link text-gray-700 hover:text-brand-primary font-medium" data-page="home" onclick="showPage('home')" data-key="nav-home">首页</a>
+                    
+                    <!-- 产品中心 下拉菜单 -->
+                    <div class="relative group">
+                        <button class="nav-link text-gray-700 hover:text-brand-primary font-medium flex items-center" data-key="nav-products">
+                            产品中心
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-60 bg-white shadow-lg rounded-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                            <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="product-hd200" onclick="showPage('product-hd200')">HD Micro-Module 200</a>
+                            <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="product-hd300" onclick="showPage('product-hd300')">HD Micro-Module 300 & 400</a>
+                            <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="product-hd1000" onclick="showPage('product-hd1000')">HD Micro-Module 1000 系列</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 解决方案 下拉菜单 -->
+                    <div class="relative group">
+                        <button class="nav-link text-gray-700 hover:text-brand-primary font-medium flex items-center" data-key="nav-solutions">
+                            解决方案
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-60 bg-white shadow-lg rounded-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                            <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="solution-ai" onclick="showPage('solution-ai')" data-key="nav-solution-ai">人工智能与HPC</a>
+                            <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="solution-edge" onclick="showPage('solution-edge')" data-key="nav-solution-edge">边缘计算与IoT</a>
+                        </div>
+                    </div>
+
+                    <!-- 合作伙伴 下拉菜单 -->
+                    <div class="relative group">
+                        <button class="nav-link text-gray-700 hover:text-brand-primary font-medium flex items-center" data-key="nav-partners">
+                            合作伙伴
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-60 bg-white shadow-lg rounded-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                            <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="partner-xfusion" onclick="showPage('partner-xfusion')" data-key="nav-partner-xfusion">我们与XFusion的合作</a>
+                        </div>
+                    </div>
+
+                    <a href="#" class="nav-link text-gray-700 hover:text-brand-primary font-medium" data-page="about" onclick="showPage('about')" data-key="nav-about">关于我们</a>
+                </div>
+
+                <!-- 1.3 右侧操作 (CTA & Language) -->
+                <div class="hidden lg:flex items-center space-x-4">
+                    <!-- 语言切换 (Desktop) -->
+                    <div class="text-sm font-medium space-x-1 lang-switcher">
+                        <a href="#" class="text-gray-500 hover:text-brand-primary" onclick="switchLanguage('FR')">FR</a>
+                        <span class="text-gray-300">|</span>
+                        <a href="#" class="text-gray-500 hover:text-brand-primary" onclick="switchLanguage('EN')">EN</a>
+                        <span class="text-gray-300">|</span>
+                        <a href="#" class="text-brand-primary font-semibold active" onclick="switchLanguage('ZH')">简</a>
+                        <span class="text-gray-300">|</span>
+                        <a href="#" class="text-gray-500 hover:text-brand-primary" onclick="switchLanguage('JA')">日</a>
+                    </div>
+                    <!-- CTA -->
+                    <a href="#" onclick="showPage('contact')" class="bg-brand-accent hover:bg-brand-accent-hover text-white font-medium py-2 px-5 rounded-full transition duration-300 shadow-lg" data-key="nav-contact">
+                        联系我们
+                    </a>
+                </div>
+
+                <!-- 1.4 移动端菜单按钮 (Mobile Menu Button) -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-800 hover:text-brand-primary">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 2. 移动端菜单 (Mobile Menu) -->
+    <div id="mobile-menu" class="lg:hidden fixed top-0 left-0 w-full h-full bg-brand-light transform -translate-x-full z-50 p-6 transition-transform duration-300">
+        <div class="flex justify-between items-center mb-8">
+            <span class="text-2xl font-bold text-brand-dark">HDS<span class="text-brand-primary">(Singapore)</span></span>
+            <button id="mobile-menu-close-button" class="text-gray-700 hover:text-brand-primary">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        
+        <!-- 移动端导航链接 -->
+        <nav class="flex flex-col space-y-5">
+            <a href="#" class="mobile-nav-link text-xl text-gray-800" data-page="home" data-key="nav-home">首页</a>
+            
+            <div class="text-xl text-gray-800">
+                <span data-key="nav-products">产品中心</span>
+                <div class="flex flex-col pl-4 mt-2 space-y-3">
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="product-hd200">HD Micro-Module 200</a>
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="product-hd300">HD Micro-Module 300 & 400</a>
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="product-hd1000">HD Micro-Module 1000 系列</a>
+                </div>
+            </div>
+            
+            <div class="text-xl text-gray-800">
+                <span data-key="nav-solutions">解决方案</span>
+                <div class="flex flex-col pl-4 mt-2 space-y-3">
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="solution-ai" data-key="nav-solution-ai">人工智能与HPC</a>
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="solution-edge" data-key="nav-solution-edge">边缘计算与IoT</a>
+                </div>
+            </div>
+
+            <div class="text-xl text-gray-800">
+                <span data-key="nav-partners">合作伙伴</span>
+                <div class="flex flex-col pl-4 mt-2 space-y-3">
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="partner-xfusion" data-key="nav-partner-xfusion">我们与XFusion的合作</a>
+                </div>
+            </div>
+
+            <a href="#" class="mobile-nav-link text-xl text-gray-800" data-page="about" data-key="nav-about">关于我们</a>
+            
+            <a href="#" class="mobile-nav-link text-xl text-white font-medium bg-brand-accent py-3 px-6 rounded-full mt-6 text-center" data-page="contact" data-key="nav-contact">
+                联系我们
+            </a>
+            
+            <!-- 语言切换 (Mobile) -->
+            <div class="text-lg font-medium text-center pt-4 space-x-2 lang-switcher">
+                <a href="#" class="text-gray-500 hover:text-brand-primary" onclick="switchLanguage('FR')">FR</a>
+                <span class="text-gray-300">|</span>
+                <a href="#" class="text-gray-500 hover:text-brand-primary" onclick="switchLanguage('EN')">EN</a>
+                <span class="text-gray-300">|</span>
+                <a href="#" class="text-brand-primary font-semibold active" onclick="switchLanguage('ZH')">简</a>
+                <span class="text-gray-300">|</span>
+                <a href="#" class="text-gray-500 hover:text-brand-primary" onclick="switchLanguage('JA')">日</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 3. 主体内容 (Main Content) -->
+    <main>
+
+        <!-- 3.1 首页 (Home) -->
+        <section id="home" class="page-content">
+            <!-- 3.1.1 首页主视觉区 (Hero Section) -->
+            <div class="relative bg-brand-dark text-white min-h-[700px] md:min-h-[800px] flex items-center justify-center overflow-hidden pt-20 pb-20">
+                <!-- 背景图 (占位) -->
+                <img src="https://placehold.co/1920x1080/001E42/ffffff?text=Modern+Data+Center+Background" 
+                     alt="现代数据中心背景"
+                     class="absolute inset-0 w-full h-full object-cover opacity-30">
+                
+                <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6" data-key="hero-title">
+                        为<span class="text-green-400">AI时代</span>构建智能基础设施
+                    </h1>
+                    <p class="text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto mb-10" data-key="hero-subtitle">
+                        HDS 作为华电晨光的海外市场总代理，提供可扩展、可快速部署的微模块数据中心解决方案，专为满足欧洲和亚洲市场的严苛需求而设计。
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                        <a href="#" onclick="showPage('product-hd200')" class="bg-brand-accent hover:bg-brand-accent-hover text-white text-lg font-semibold py-4 px-8 rounded-full transition duration-300 shadow-lg transform hover:scale-105" data-key="hero-cta-product">
+                            探索HD-200系列
+                        </a>
+                        <a href="#" onclick="showPage('solution-ai')" class="bg-transparent border-2 border-white hover:bg-white hover:text-brand-dark text-white text-lg font-semibold py-4 px-8 rounded-full transition duration-300 shadow-lg transform hover:scale-105" data-key="hero-cta-solution">
+                            查看AI解决方案
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3.1.2 产品家族展示区 -->
+            <section class="py-16 md:py-24 bg-brand-light">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12 md:mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4" data-key="product-family-title">产品家族</h2>
+                        <p class="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto" data-key="product-family-subtitle">从企业级应用到AI高密度计算，我们的微模块方案覆盖您的全部需求。</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- 卡片 1 (HD-200) -->
+                        <div class="bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                            <img src="https://placehold.co/600x400/eeeeee/aaaaaa?text=HD-200+Product" alt="HD Micro-Module 200" class="w-full h-56 object-cover">
+                            <div class="p-8">
+                                <h3 class="text-2xl font-bold text-brand-dark mb-3">HD Micro-Module 200</h3>
+                                <p class="text-lg font-semibold text-brand-primary mb-4" data-key="product-card1-tag">可靠高效</p>
+                                <p class="text-gray-700 mb-6" data-key="product-card1-desc">面向企业级需求的旗舰风冷解决方案。</p>
+                                <a href="#" onclick="showPage('product-hd200')" class="font-medium text-brand-primary hover:text-brand-dark transition duration-300" data-key="learn-more">了解更多 &rarr;</a>
+                            </div>
+                        </div>
+                        <!-- 卡片 2 (HD-300/400) -->
+                        <div class="bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                            <img src="https://placehold.co/600x400/e0e0e0/aaaaaa?text=HD-300/400+Series" alt="HD Micro-Module 300 & 400" class="w-full h-56 object-cover">
+                            <div class="p-8">
+                                <h3 class="text-2xl font-bold text-brand-dark mb-3">HD Micro-Module 300 & 400</h3>
+                                <p class="text-lg font-semibold text-brand-primary mb-4" data-key="product-card2-tag">可扩展与灵活</p>
+                                <p class="text-gray-700 mb-6" data-key="product-card2-desc">为满足增长型计算需求而生的下一代产品。</p>
+                                <a href="#" onclick="showPage('product-hd300')" class="font-medium text-brand-primary hover:text-brand-dark transition duration-300" data-key="learn-more">了解更多 &rarr;</a>
+                            </div>
+                        </div>
+                        <!-- 卡片 3 (HD-1000) -->
+                        <div class="bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                            <img src="https://placehold.co/600x400/d0d0d0/aaaaaa?text=HD-1000+Liquid+Cooling" alt="HD Micro-Module 1000" class="w-full h-56 object-cover">
+                            <div class="p-8">
+                                <h3 class="text-2xl font-bold text-brand-dark mb-3">HD Micro-Module 1000</h3>
+                                <p class="text-lg font-semibold text-brand-primary mb-4" data-key="product-card3-tag">极致密度 · 液冷散热</p>
+                                <p class="text-gray-700 mb-6" data-key="product-card3-desc">专为AI工作负载设计的创新解决方案。</p>
+                                <a href="#" onclick="showPage('product-hd1000')" class="font-medium text-brand-primary hover:text-brand-dark transition duration-300" data-key="learn-more">了解更多 &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3.1.3 战略合作特写区 (XFusion) -->
+            <section class="py-16 md:py-24 bg-brand-gray">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        <!-- Left: Text Content -->
+                        <div>
+                            <div class="flex items-center space-x-6 mb-6">
+                                <span class="text-4xl font-bold">HDS</span>
+                                <span class="text-4xl font-thin">+</span>
+                                <span class="text-4xl font-bold">XFusion</span>
+                            </div>
+                            <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-6" data-key="partner-title">强强联合，共绘AI未来</h2>
+                            <p class="text-lg text-gray-700 mb-8" data-key="partner-desc">
+                                我们与XFusion的战略合作伙伴关系，将业界一流的基础设施与领先的AI服务器技术相结合，为最严苛的工作负载提供经过预验证、性能最优化的整体解决方案。
+                            </p>
+                            <a href="#" onclick="showPage('partner-xfusion')" class="bg-brand-primary hover:bg-brand-dark text-white text-lg font-semibold py-3 px-8 rounded-full transition duration-300 shadow-md">
+                                <span data-key="partner-cta">了解我们与XFusion的合作</span>
+                            </a>
+                        </div>
+                        <!-- Right: Image -->
+                        <div class="relative w-full h-80 rounded-lg overflow-hidden shadow-2xl">
+                            <img src="https://placehold.co/800x600/1e40af/ffffff?text=HDS+and+XFusion+Alliance" 
+                                 alt="HDS 与 XFusion 战略联盟"
+                                 class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3.1.4 解决方案概览区 -->
+            <!-- (内容保持不变, 为简洁起见省略data-key添加) -->
+
+            <!-- 3.1.5 "立足新加坡"专区 -->
+            <section class="py-16 md:py-24 bg-brand-primary text-white">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6" data-key="location-title">立足新加坡，服务欧洲与亚洲</h2>
+                    <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto" data-key="location-desc">
+                        我们致力于将全球领先的数据中心技术带入欧洲和亚洲市场。凭借新加坡作为创新中心的战略地位，HDS 将成为您最可靠的数字基础设施合作伙伴，共同迈向智能化的未来。
+                    </p>
+                </div>
+            </section>
+
+        </section> <!-- End of #home -->
+
+        <!-- 3.2 产品页 (模板 - HD-1000) -->
+        <section id="product-hd1000" class="page-content py-16 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- 页面内容... -->
+                <h1 class="text-4xl font-bold text-brand-dark mb-4">HD Micro-Module 1000 系列</h1>
+                <p class="text-2xl text-brand-primary mb-8" data-key="hd1000-tagline">以芯片级液冷技术，释放AI全部潜能。</p>
+                
+                <div class="bg-white p-8 rounded-lg shadow-xl border border-gray-200">
+                    <h2 class="text-2xl font-bold mb-6" data-key="hd1000-features-title">核心优势</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- 特性 1 -->
+                        <div class="text-center p-4">
+                            <svg class="w-12 h-12 text-brand-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            <h3 class="text-lg font-semibold mb-2" data-key="hd1000-feature1-title">极致密度</h3>
+                            <p class="text-gray-700" data-key="hd1000-feature1-desc">支持单机柜超过30kW的功率密度。</p>
+                        </div>
+                        <!-- 特性 2 -->
+                        <div class="text-center p-4">
+                            <svg class="w-12 h-12 text-brand-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.66-15.66l-.7.7M4.04 19.96l-.7.7M21 12h-1M4 12H3m16.66-4.66l-.7-.7M4.04 4.04l-.7-.7"></path></svg>
+                            <h3 class="text-lg font-semibold mb-2" data-key="hd1000-feature2-title">巅峰能效</h3>
+                            <p class="text-gray-700" data-key="hd1000-feature2-desc">通过先进液冷技术，显著降低PUE。</p>
+                        </div>
+                        <!-- 特性 3 -->
+                        <div class="text-center p-4">
+                            <svg class="w-12 h-12 text-brand-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16v4m-2-2h4m5 11v4m-2-2h4M12 3v16"></path></svg>
+                            <h3 class="text-lg font-semibold mb-2" data-key="hd1000-feature3-title">AI优化</h3>
+                            <p class="text-gray-700" data-key="hd1000-feature3-desc">专为XFusion AI服务器设计并完成验证。</p>
+                        </div>
+                        <!-- 特性 4 -->
+                        <div class="text-center p-4">
+                            <svg class="w-12 h-12 text-brand-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657L13.414 14.414m-2.828-2.828l-1.414-1.414L6.343 13l-2.121-2.121l1.414-1.414L8.464 6.636l1.414-1.414l2.828 2.828l1.414 1.414L17.657 13l2.121 2.121l-1.414 1.414L15.536 19.364l-1.414 1.414l-2.828-2.828z"></path></svg>
+                            <h3 class="text-lg font-semibold mb-2" data-key="hd1000-feature4-title">可持续计算</h3>
+                            <p class="text-gray-700" data-key="hd1000-feature4-desc">降低您的碳足迹和能源成本。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="text-center text-xl text-gray-700 mt-16" data-key="page-in-construction">... 更多页面内容正在建设中 ...</p>
+            </div>
+        </section>
+
+        <!-- 3.3 解决方案：AI & HPC -->
+        <section id="solution-ai" class="page-content">
+            <!-- (内容保持不变) -->
+            <div class="py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl font-bold text-brand-dark mb-4" data-key="nav-solution-ai">人工智能与HPC</h1>
+                <p class="text-center text-xl text-gray-700 mt-16" data-key="page-in-construction">... 页面内容正在建设中 ...</p>
+            </div>
+        </section>
+
+        <!-- 3.4 合作伙伴：XFusion -->
+        <section id="partner-xfusion" class="page-content">
+            <!-- (内容保持不变) -->
+            <div class="py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl font-bold text-brand-dark mb-4" data-key="nav-partner-xfusion">我们与XFusion的合作</h1>
+                <p class="text-center text-xl text-gray-700 mt-16" data-key="page-in-construction">... 页面内容正在建设中 ...</p>
+            </div>
+        </section>
+        
+        <!-- 其他占位页面 -->
+        <section id="product-hd200" class="page-content py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold text-brand-dark mb-4">HD Micro-Module 200</h1>
+            <p class="text-center text-xl text-gray-700 mt-16" data-key="page-in-construction">... 页面内容正在建设中 ...</p>
+        </section>
+        <section id="product-hd300" class="page-content py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold text-brand-dark mb-4">HD Micro-Module 300 & 400</h1>
+            <p class="text-center text-xl text-gray-700 mt-16" data-key="page-in-construction">... 页面内容正在建设中 ...</p>
+        </section>
+        <section id="solution-edge" class="page-content py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold text-brand-dark mb-4" data-key="nav-solution-edge">边缘计算与IoT</h1>
+            <p class="text-center text-xl text-gray-700 mt-16" data-key="page-in-construction">... 页面内容正在建设中 ...</p>
+        </section>
+        <section id="about" class="page-content py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold text-brand-dark mb-4" data-key="nav-about">关于我们</h1>
+            <p class="text-center text-xl text-gray-700 mt-16" data-key="page-in-construction">... 页面内容正在建设中 ...</p>
+        </section>
+        <section id="contact" class="page-content py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold text-brand-dark mb-4" data-key="nav-contact">联系我们</h1>
+            <p class="text-center text-xl text-gray-700 mt-16" data-key="page-in-construction">... 页面内容正在建设中 ...</p>
+        </section>
+
+    </main>
+
+    <!-- 4. 页脚 (Footer) -->
+    <footer class="bg-brand-dark text-gray-300 pt-16 pb-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+                <!-- 4.1 Logo & Info -->
+                <div class="col-span-2 lg:col-span-2">
+                    <span class="text-2xl font-bold text-white mb-4 block">
+                        HDS<span class="text-blue-400">(Singapore)</span>
+                    </span>
+                    <p class="text-sm text-gray-400 max-w-xs mb-4" data-key="footer-desc">
+                        HDS 作为华电晨光的海外市场总代理，以智能、可扩展且可持续的数据中心基础设施，赋能欧洲和亚洲的AI与边缘计算变革。
+                    </p>
+                    <p class="text-sm text-gray-400">
+                        123 Marina Bay Sands,<br>
+                        Singapore 018956
+                    </p>
+                </div>
+
+                <!-- 4.2 链接组 1: 产品 -->
+                <div>
+                    <h5 class="font-bold text-white text-lg mb-4" data-key="nav-products">产品中心</h5>
+                    <ul class="space-y-3">
+                        <li><a href="#" onclick="showPage('product-hd200')" class="text-gray-400 hover:text-white">HD-200</a></li>
+                        <li><a href="#" onclick="showPage('product-hd300')" class="text-gray-400 hover:text-white">HD-300/400</a></li>
+                        <li><a href="#" onclick="showPage('product-hd1000')" class="text-gray-400 hover:text-white">HD-1000</a></li>
+                    </ul>
+                </div>
+
+                <!-- 4.3 链接组 2: 解决方案 -->
+                <div>
+                    <h5 class="font-bold text-white text-lg mb-4" data-key="nav-solutions">解决方案</h5>
+                    <ul class="space-y-3">
+                        <li><a href="#" onclick="showPage('solution-ai')" class="text-gray-400 hover:text-white" data-key="nav-solution-ai">AI & HPC</a></li>
+                        <li><a href="#" onclick="showPage('solution-edge')" class="text-gray-400 hover:text-white" data-key="nav-solution-edge">边缘计算 & IoT</a></li>
+                    </ul>
+                </div>
+
+                <!-- 4.4 链接组 3: 公司 -->
+                <div>
+                    <h5 class="font-bold text-white text-lg mb-4" data-key="nav-company">公司</h5>
+                    <ul class="space-y-3">
+                        <li><a href="#" onclick="showPage('about')" class="text-gray-400 hover:text-white" data-key="nav-about">关于我们</a></li>
+                        <li><a href="#" onclick="showPage('partner-xfusion')" class="text-gray-400 hover:text-white" data-key="nav-partners">合作伙伴</a></li>
+                    </ul>
+                </div>
+                
+                <!-- 4.5 链接组 4: 联系 -->
+                <div>
+                    <h5 class="font-bold text-white text-lg mb-4" data-key="nav-connect">保持联系</h5>
+                    <ul class="space-y-3">
+                        <li><a href="#" onclick="showPage('contact')" class="text-gray-400 hover:text-white" data-key="nav-contact">联系我们</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 分隔线 -->
+            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-gray-400 mb-4 md:mb-0">
+                    &copy; <span id="current-year"></span> HDS (Singapore) Pte. Ltd. All rights reserved.
+                </p>
+                <div class="flex space-x-6">
+                    <!-- 社交媒体图标 (占位) -->
+                    <a href="#" class="text-gray-400 hover:text-white"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-3.993-.2-7.527-2.122-9.9-5.016-.412.702-.646 1.512-.646 2.368 0 2.086 1.064 3.923 2.688 4.995-.976-.031-1.899-.3-2.706-.75v.052c0 2.909 2.071 5.337 4.811 5.89-.502.136-1.03.208-1.56.208-.386 0-.76-.036-1.128-.108.764 2.383 2.983 4.123 5.621 4.171-2.053 1.605-4.643 2.56-7.456 2.56-.484 0-.962-.028-1.431-.084 2.655 1.701 5.805 2.695 9.17 2.695 11.008 0 17.031-9.123 17.031-17.031 0-.259-.007-.517-.02-.774.96-.694 1.795-1.558 2.457-2.548z"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- 5. JavaScript -->
+    <script>
+        // --- 1. 语言翻译数据 (i18n) ---
+        // (注意：这是一个演示，只翻译了部分关键内容)
+        const translations = {
+            'ZH': {
+                'site-title': 'HDS (Singapore) | 面向未来的基础设施',
+                'nav-home': '首页',
+                'nav-products': '产品中心',
+                'nav-solutions': '解决方案',
+                'nav-solution-ai': '人工智能与HPC',
+                'nav-solution-edge': '边缘计算与IoT',
+                'nav-partners': '合作伙伴',
+                'nav-partner-xfusion': '我们与XFusion的合作',
+                'nav-about': '关于我们',
+                'nav-contact': '联系我们',
+                'nav-company': '公司',
+                'nav-connect': '保持联系',
+                'hero-title': '为<span class="text-green-400">AI时代</span>构建智能基础设施',
+                'hero-subtitle': 'HDS 作为华电晨光的海外市场总代理，提供可扩展、可快速部署的微模块数据中心解决方案，专为满足欧洲和亚洲市场的严苛需求而设计。',
+                'hero-cta-product': '探索HD-200系列',
+                'hero-cta-solution': '查看AI解决方案',
+                'product-family-title': '产品家族',
+                'product-family-subtitle': '从企业级应用到AI高密度计算，我们的微模块方案覆盖您的全部需求。',
+                'product-card1-tag': '可靠高效',
+                'product-card1-desc': '面向企业级需求的旗舰风冷解决方案。',
+                'product-card2-tag': '可扩展与灵活',
+                'product-card2-desc': '为满足增长型计算需求而生的下一代产品。',
+                'product-card3-tag': '极致密度 · 液冷散热',
+                'product-card3-desc': '专为AI工作负载设计的创新解决方案。',
+                'learn-more': '了解更多 &rarr;',
+                'partner-title': '强强联合，共绘AI未来',
+                'partner-desc': '我们与XFusion的战略合作伙伴关系，将业界一流的基础设施与领先的AI服务器技术相结合，为最严苛的工作负载提供经过预验证、性能最优化的整体解决方案。',
+                'partner-cta': '了解我们与XFusion的合作',
+                'location-title': '立足新加坡，服务欧洲与亚洲',
+                'location-desc': '我们致力于将全球领先的数据中心技术带入欧洲和亚洲市场。凭借新加坡作为创新中心的战略地位，HDS 将成为您最可靠的数字基础设施合作伙伴，共同迈向智能化的未来。',
+                'footer-desc': 'HDS 作为华电晨光的海外市场总代理，以智能、可扩展且可持续的数据中心基础设施，赋能欧洲和亚洲的AI与边缘计算变革。',
+                'page-in-construction': '... 页面内容正在建设中 ...',
+                'hd1000-tagline': '以芯片级液冷技术，释放AI全部潜能。',
+                'hd1000-features-title': '核心优势',
+                'hd1000-feature1-title': '极致密度',
+                'hd1000-feature1-desc': '支持单机柜超过30kW的功率密度。',
+                'hd1000-feature2-title': '巅峰能效',
+                'hd1000-feature2-desc': '通过先进液冷技术，显著降低PUE。',
+                'hd1000-feature3-title': 'AI优化',
+                'hd1000-feature3-desc': '专为XFusion AI服务器设计并完成验证。',
+                'hd1000-feature4-title': '可持续计算',
+                'hd1000-feature4-desc': '降低您的碳足迹和能源成本。',
+            },
+            'EN': {
+                'site-title': 'HDS (Singapore) | Future-Ready Infrastructure',
+                'nav-home': 'Home',
+                'nav-products': 'Products',
+                'nav-solutions': 'Solutions',
+                'nav-solution-ai': 'AI & HPC',
+                'nav-solution-edge': 'Edge Computing & IoT',
+                'nav-partners': 'Partners',
+                'nav-partner-xfusion': 'Our XFusion Partnership',
+                'nav-about': 'About Us',
+                'nav-contact': 'Contact Us',
+                'nav-company': 'Company',
+                'nav-connect': 'Connect',
+                'hero-title': 'Building Smart Infrastructure for the <span class="text-green-400">AI Era</span>',
+                'hero-subtitle': 'As the official overseas agent for Huadian C-light, HDS delivers scalable, rapid-deployment micro-module data center solutions, engineered for the demanding needs of the European and Asian markets.',
+                'hero-cta-product': 'Explore HD-200 Series',
+                'hero-cta-solution': 'View AI Solutions',
+                'product-family-title': 'Product Families',
+                'product-family-subtitle': 'From enterprise applications to AI high-density computing, our solutions cover all your needs.',
+                'product-card1-tag': 'Reliable & Efficient',
+                'product-card1-desc': 'The flagship air-cooled solution for enterprise-grade requirements.',
+                'product-card2-tag': 'Scalable & Flexible',
+                'product-card2-desc': 'Next-generation products designed for growing computing demands.',
+                'product-card3-tag': 'Extreme Density · Liquid Cooling',
+                'product-card3-desc': 'The innovative solution designed for AI workloads.',
+                'learn-more': 'Learn More &rarr;',
+                'partner-title': 'A Powerful Alliance for the AI Future',
+                'partner-desc': 'Our strategic partnership with XFusion combines best-in-class infrastructure with leading AI server technology to deliver pre-validated, performance-optimized total solutions for the most demanding workloads.',
+                'partner-cta': 'Learn About Our XFusion Partnership',
+                'location-title': 'Based in Singapore, Serving Europe & Asia',
+                'location-desc': 'We are committed to bringing world-leading data center technology to the European and Asian markets. From our strategic hub in Singapore, HDS is your most reliable partner in the journey toward an intelligent future.',
+                'footer-desc': 'As the official overseas agent for Huadian C-light, HDS empowers the AI and edge computing transformation in Europe and Asia with smart, scalable, and sustainable data center infrastructure.',
+                'page-in-construction': '... Page content is under construction ...',
+                'hd1000-tagline': 'Unleash Full AI Potential with Chip-Level Liquid Cooling.',
+                'hd1000-features-title': 'Core Advantages',
+                'hd1000-feature1-title': 'Extreme Density',
+                'hd1000-feature1-desc': 'Supports over 30kW per rack power density.',
+                'hd1000-feature2-title': 'Peak Efficiency',
+                'hd1000-feature2-desc': 'Significantly reduces PUE with advanced liquid cooling.',
+                'hd1000-feature3-title': 'AI-Optimized',
+                'hd1000-feature3-desc': 'Designed and validated for XFusion AI servers.',
+                'hd1000-feature4-title': 'Sustainable Computing',
+                'hd1000-feature4-desc': 'Reduce your carbon footprint and energy costs.',
+            },
+            // 'FR' 和 'JA' 可以稍后添加
+            'FR': {},
+            'JA': {}
+        };
+
+        // --- 2. 页面导航 (SPA) ---
+        
+        // 存储当前活动页面
+        let currentPage = 'home';
+        
+        // 切换页面的函数
+        function showPage(pageId) {
+            // 1. 隐藏当前页面
+            const currentPageElement = document.getElementById(currentPage);
+            if (currentPageElement) {
+                currentPageElement.style.display = 'none';
+            }
+            
+            // 2. 显示新页面
+            const newPageElement = document.getElementById(pageId);
+            if (newPageElement) {
+                newPageElement.style.display = 'block';
+            } else {
+                // 如果页面不存在，则返回首页
+                document.getElementById('home').style.display = 'block';
+                pageId = 'home';
+            }
+            
+            // 3. 更新当前页面变量
+            currentPage = pageId;
+            
+            // 4. 关闭移动菜单（如果打开）
+            closeMobileMenu();
+            
+            // 5. 滚动到页面顶部
+            window.scrollTo(0, 0);
+        }
+
+        // --- 3. 语言切换 (i18n) ---
+        function switchLanguage(lang) {
+            // 1. 检查翻译是否存在，如果不存在则使用中文(ZH)或英文(EN)作为备选
+            const langPack = translations[lang] || translations['EN'] || translations['ZH'];
+            
+            // 2. 更新所有带 data-key 的元素
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.dataset.key;
+                if (langPack[key]) {
+                    // 使用 innerHTML 以便支持 span 标签 (例如在 hero-title 中)
+                    el.innerHTML = langPack[key];
+                }
+            });
+            
+            // 3. 更新 <html> 标签的 lang 属性
+            document.documentElement.lang = lang;
+            
+            // 4. 更新语言切换器的活动状态
+            document.querySelectorAll('.lang-switcher a').forEach(a => {
+                if (a.innerText.toUpperCase() === lang.toUpperCase()) {
+                    a.classList.add('active', 'text-brand-primary', 'font-semibold');
+                    a.classList.remove('text-gray-500');
+                } else {
+                    a.classList.remove('active', 'text-brand-primary', 'font-semibold');
+                    a.classList.add('text-gray-500');
+                }
+            });
+            
+            // 5. 防止链接的默认点击行为 (跳转)
+            event.preventDefault();
+        }
+
+        // --- 4. 移动菜单 (Mobile Menu) ---
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.add('-translate-x-full');
+        }
+
+        // --- 5. DOM 加载完成后的事件绑定 ---
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 移动菜单按钮
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenuCloseButton = document.getElementById('mobile-menu-close-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.remove('-translate-x-full');
+            });
+            
+            mobileMenuCloseButton.addEventListener('click', closeMobileMenu);
+            
+            // 移动菜单中的导航链接
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault(); // 阻止链接跳转
+                    const pageId = this.dataset.page;
+                    if (pageId) {
+                        showPage(pageId);
+                    }
+                });
+            });
+
+            // 桌面菜单中的导航链接 (处理非showPage的点击, 如普通按钮)
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const pageId = this.dataset.page;
+                    if (pageId) {
+                        e.preventDefault(); // 阻止链接跳转
+                        showPage(pageId);
+                    }
+                    // 如果没有 data-page, 则它是下拉菜单按钮, 允许CSS group-hover工作
+                });
+            });
+
+            // 更新页脚年份
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // 默认设置语言 (例如从浏览器检测或保持 'ZH')
+             // switchLanguage('ZH'); // 默认加载中文
+        });
+
+    </script>
+
+</body>
+</html>
