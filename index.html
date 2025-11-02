@@ -51,10 +51,17 @@
             display: block;
         }
         
-        /* 语言切换的活动状态 */
+        /* 语言切换的活动状态 (用于头部和移动端) */
         .lang-switcher a.active {
             color: #0D61FE; /* brand-primary */
             font-weight: 600;
+        }
+        
+        /* 浮动语言切换器的活动状态 (JS会控制) */
+        .floating-lang-menu a.active {
+            color: #0D61FE; /* brand-primary */
+            font-weight: 600;
+            background-color: #F5F7FA; /* brand-gray */
         }
     </style>
 </head>
@@ -82,7 +89,7 @@
                             产品中心
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div class="absolute top-full left-0 mt-2 w-60 bg-white shadow-lg rounded-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                        <div class="absolute top-full left-0 mt-2 w-60 bg-white shadow-lg rounded-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10 overflow-hidden">
                             <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="product-hd200" onclick="showPage('product-hd200')">HD Micro-Module 200</a>
                             <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="product-hd300" onclick="showPage('product-hd300')">HD Micro-Module 300 & 400</a>
                             <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="product-hd1000" onclick="showPage('product-hd1000')">HD Micro-Module 1000 系列</a>
@@ -95,7 +102,7 @@
                             解决方案
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div class="absolute top-full left-0 mt-2 w-60 bg-white shadow-lg rounded-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                        <div class="absolute top-full left-0 mt-2 w-60 bg-white shadow-lg rounded-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10 overflow-hidden">
                             <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="solution-ai" onclick="showPage('solution-ai')" data-key="nav-solution-ai">人工智能与HPC</a>
                             <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="solution-edge" onclick="showPage('solution-edge')" data-key="nav-solution-edge">边缘计算与IoT</a>
                         </div>
@@ -107,7 +114,7 @@
                             合作伙伴
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div class="absolute top-full left-0 mt-2 w-60 bg-white shadow-lg rounded-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                        <div class="absolute top-full left-0 mt-2 w-60 bg-white shadow-lg rounded-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10 overflow-hidden">
                             <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="partner-xfusion" onclick="showPage('partner-xfusion')" data-key="nav-partner-xfusion">我们与XFusion的合作</a>
                             <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="partner-aliyun" onclick="showPage('partner-aliyun')" data-key="nav-partner-aliyun">与阿里云的合作</a>
                             <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="partner-clight" onclick="showPage('partner-clight')" data-key="nav-partner-clight">与华电晨光的合作</a>
@@ -210,10 +217,12 @@
         <section id="home" class="page-content">
             <!-- 3.1.1 首页主视觉区 (Hero Section) -->
             <div class="relative bg-brand-dark text-white min-h-[700px] md:min-h-[800px] flex items-center justify-center overflow-hidden pt-20 pb-20">
-                <!-- 背景图 (占位) -->
-                <img src="https://placehold.co/1920x1080/001E42/ffffff?text=Modern+Data+Center+Background" 
+                <!-- 背景图 (占位) - 移除了text参数 -->
+                <img src="https://placehold.co/1920x1080/001E42/001E42" 
                      alt="现代数据中心背景"
                      class="absolute inset-0 w-full h-full object-cover opacity-30">
+                <!-- 新增：半透明遮罩 -->
+                <div class="absolute inset-0 bg-brand-dark opacity-40"></div>
                 
                 <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6" data-key="hero-title">
@@ -307,7 +316,37 @@
             </section>
 
             <!-- 3.1.4 解决方案概览区 -->
-            <!-- (内容保持不变, 为简洁起见省略data-key添加) -->
+            <section class="py-16 md:py-24 bg-brand-light">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12 md:mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4" data-key="nav-solutions">解决方案</h2>
+                        <p class="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto" data-key="solutions-subtitle">针对您的特定应用场景，提供端到端的优化方案。</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- 方案 1: AI & HPC -->
+                        <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-100 text-center transform hover:-translate-y-2 transition-transform duration-300">
+                            <svg class="w-16 h-16 text-brand-primary mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m16-6h-2m2 6h-2M12 5V3m0 18v-2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42M5.64 5.64L4.22 4.22M19.78 19.78l-1.42-1.42M12 12a3 3 0 100-6 3 3 0 000 6z"></path></svg>
+                            <h3 class="text-2xl font-bold text-brand-dark mb-4" data-key="nav-solution-ai">人工智能与HPC</h3>
+                            <p class="text-gray-700 mb-6" data-key="solution-ai-desc">为AI训练和HPC工作负载，部署高密度、低延迟的基础设施。</p>
+                            <a href="#" onclick="showPage('solution-ai')" class="font-medium text-brand-primary hover:text-brand-dark" data-key="learn-more">了解更多 &rarr;</a>
+                        </div>
+                        <!-- 方案 2: 边缘计算 -->
+                        <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-100 text-center transform hover:-translate-y-2 transition-transform duration-300">
+                            <svg class="w-16 h-16 text-brand-primary mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.242-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <h3 class="text-2xl font-bold text-brand-dark mb-4" data-key="nav-solution-edge">边缘计算与IoT</h3>
+                            <p class="text-gray-700 mb-6" data-key="solution-edge-desc">在数据源头快速部署计算能力，支持实时物联网(IoT)应用。</p>
+                            <a href="#" onclick="showPage('solution-edge')" class="font-medium text-brand-primary hover:text-brand-dark" data-key="learn-more">了解更多 &rarr;</a>
+                        </div>
+                        <!-- 方案 3: 企业IT -->
+                        <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-100 text-center transform hover:-translate-y-2 transition-transform duration-300">
+                            <svg class="w-16 h-16 text-brand-primary mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m-1 4h1m5-4h1m-1 4h1m-1-8h1m-5 8h.01M12 7h.01M12 11h.01M12 15h.01"></path></svg>
+                            <h3 class="text-2xl font-bold text-brand-dark mb-4" data-key="solution-enterprise-title">企业IT与主机托管</h3>
+                            <p class="text-gray-700 mb-6" data-key="solution-enterprise-desc">为您的核心业务应用提供可靠、安全且易于管理的IT基础设施。</p>
+                            <a href="#" onclick="showPage('home')" class="font-medium text-brand-primary hover:text-brand-dark" data-key="learn-more">了解更多 &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <!-- 3.1.5 "立足新加坡"专区 -->
             <section class="py-16 md:py-24 bg-brand-primary text-white">
@@ -363,21 +402,15 @@
         </section>
 
         <!-- 3.3 解决方案：AI & HPC -->
-        <section id="solution-ai" class="page-content">
-            <!-- (内容保持不变) -->
-            <div class="py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
-                <h1 class="text-4xl font-bold text-brand-dark mb-4" data-key="nav-solution-ai">人工智能与HPC</h1>
-                <p class="text-center text-xl text-gray-700 mt-16" data-key="page-in-construction">... 页面内容正在建设中 ...</p>
-            </div>
+        <section id="solution-ai" class="page-content py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold text-brand-dark mb-4" data-key="nav-solution-ai">人工智能与HPC</h1>
+            <p class="text-center text-xl text-gray-700 mt-16" data-key="page-in-construction">... 页面内容正在建设中 ...</p>
         </section>
 
         <!-- 3.4 合作伙伴：XFusion -->
-        <section id="partner-xfusion" class="page-content">
-            <!-- (内容保持不变) -->
-            <div class="py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
-                <h1 class="text-4xl font-bold text-brand-dark mb-4" data-key="nav-partner-xfusion">我们与XFusion的合作</h1>
-                <p class="text-center text-xl text-gray-700 mt-16" data-key="page-in-construction">... 页面内容正在建设中 ...</p>
-            </div>
+        <section id="partner-xfusion" class="page-content py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold text-brand-dark mb-4" data-key="nav-partner-xfusion">我们与XFusion的合作</h1>
+            <p class="text-center text-xl text-gray-700 mt-16" data-key="page-in-construction">... 页面内容正在建设中 ...</p>
         </section>
         
         <!-- 新增：阿里云 -->
@@ -489,6 +522,21 @@
         </div>
     </footer>
 
+    <!-- 6. 新增：浮动语言切换 (Floating Language Switcher) -->
+    <div class="fixed bottom-6 right-6 z-40 group">
+        <!-- 默认显示的按钮 -->
+        <button id="floating-lang-button" class="w-14 h-14 bg-brand-primary text-white rounded-full shadow-lg flex items-center justify-center text-lg font-bold transform transition-transform hover:scale-110">
+            简
+        </button>
+        <!-- 悬停展开的菜单 -->
+        <div class="floating-lang-menu absolute bottom-full right-0 mb-3 w-40 bg-white rounded-lg shadow-xl border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 overflow-hidden">
+            <a href="#" class="block w-full text-left px-5 py-3 text-gray-500 hover:bg-brand-gray" onclick="switchLanguage('FR')">Français (FR)</a>
+            <a href="#" class="block w-full text-left px-5 py-3 text-gray-500 hover:bg-brand-gray" onclick="switchLanguage('EN')">English (EN)</a>
+            <a href="#" class="block w-full text-left px-5 py-3 text-brand-primary font-semibold active bg-brand-gray" onclick="switchLanguage('ZH')">简体中文 (简)</a>
+            <a href="#" class="block w-full text-left px-5 py-3 text-gray-500 hover:bg-brand-gray" onclick="switchLanguage('JA')">日本語 (日)</a>
+        </div>
+    </div>
+
 
     <!-- 5. JavaScript -->
     <script>
@@ -546,6 +594,12 @@
                 'hd1000-feature3-desc': '专为XFusion AI服务器设计并完成验证。',
                 'hd1000-feature4-title': '可持续计算',
                 'hd1000-feature4-desc': '降低您的碳足迹和能源成本。',
+                
+                'solutions-subtitle': '针对您的特定应用场景，提供端到端的优化方案。',
+                'solution-ai-desc': '为AI训练和HPC工作负载，部署高密度、低延迟的基础设施。',
+                'solution-edge-desc': '在数据源头快速部署计算能力，支持实时物联网(IoT)应用。',
+                'solution-enterprise-title': '企业IT与主机托管',
+                'solution-enterprise-desc': '为您的核心业务应用提供可靠、安全且易于管理的IT基础设施。',
             },
             'EN': {
                 'site-title': 'HDS (Singapore) | Future-Ready Infrastructure',
@@ -598,10 +652,16 @@
                 'hd1000-feature3-desc': 'Designed and validated for XFusion AI servers.',
                 'hd1000-feature4-title': 'Sustainable Computing',
                 'hd1000-feature4-desc': 'Reduce your carbon footprint and energy costs.',
+                
+                'solutions-subtitle': 'Delivering end-to-end optimized solutions for your specific use cases.',
+                'solution-ai-desc': 'Deploy high-density, low-latency infrastructure for AI training and HPC workloads.',
+                'solution-edge-desc': 'Rapidly deploy computing power at the source for real-time IoT applications.',
+                'solution-enterprise-title': 'Enterprise IT & Colocation',
+                'solution-enterprise-desc': 'Reliable, secure, and manageable IT infrastructure for your core business applications.',
             },
             // 'FR' 和 'JA' 可以稍后添加
-            'FR': {},
-            'JA': {}
+            'FR': {}, // 法语翻译占位
+            'JA': {}  // 日语翻译占位
         };
 
         // --- 2. 页面导航 (SPA) ---
@@ -654,25 +714,42 @@
             // 3. 更新 <html> 标签的 lang 属性
             document.documentElement.lang = lang;
             
-            // 4. 更新语言切换器的活动状态
-            document.querySelectorAll('.lang-switcher a').forEach(a => {
-                if (a.innerText.toUpperCase() === lang.toUpperCase()) {
+            // 4. 更新所有语言切换器的活动状态 (Header, Mobile, Floating)
+            document.querySelectorAll('.lang-switcher a, .floating-lang-menu a').forEach(a => {
+                const aLang = a.getAttribute('onclick').match(/'([^']+)'/)[1];
+                if (aLang === lang) {
                     a.classList.add('active', 'text-brand-primary', 'font-semibold');
                     a.classList.remove('text-gray-500');
+                    // 检查是否为浮动菜单中的链接
+                    if (a.parentElement.classList.contains('floating-lang-menu')) {
+                        a.classList.add('bg-brand-gray');
+                    }
                 } else {
-                    a.classList.remove('active', 'text-brand-primary', 'font-semibold');
+                    a.classList.remove('active', 'text-brand-primary', 'font-semibold', 'bg-brand-gray');
                     a.classList.add('text-gray-500');
                 }
             });
             
-            // 5. 防止链接的默认点击行为 (跳转)
+            // 5. 更新浮动按钮的显示文本
+            const floatingButton = document.getElementById('floating-lang-button');
+            let shortLang = lang;
+            if (lang === 'ZH') shortLang = '简';
+            if (lang === 'EN') shortLang = 'EN';
+            if (lang === 'FR') shortLang = 'FR';
+            if (lang === 'JA') shortLang = '日';
+            
+            if (floatingButton) {
+                floatingButton.innerText = shortLang;
+            }
+            
+            // 6. 阻止链接的默认点击行为 (跳转)
             event.preventDefault();
         }
 
         // --- 4. 移动菜单 (Mobile Menu) ---
         function closeMobileMenu() {
             const mobileMenu = document.getElementById('mobile-menu');
-            // FIX: 增加一个空值检查
+            // 增加一个空值检查
             if (mobileMenu) {
                 mobileMenu.classList.add('-translate-x-full');
             }
@@ -686,7 +763,7 @@
             const mobileMenuCloseButton = document.getElementById('mobile-menu-close-button');
             const mobileMenu = document.getElementById('mobile-menu');
             
-            // FIX: Add null checks to prevent crash if elements are missing
+            // 增加空值检查
             if (mobileMenuButton) {
                 mobileMenuButton.addEventListener('click', () => {
                     if (mobileMenu) {
