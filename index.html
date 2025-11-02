@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <!-- 语言属性将由JS动态更改 -->
 <html lang="zh-CN" class="scroll-smooth">
 <head>
@@ -455,19 +455,21 @@
                     </ul>
                 </div>
 
-                <!-- 4.4 链接组 3: 公司 -->
+                <!-- 4.4 链接组 3: 合作伙伴 -->
+                <div>
+                    <h5 class="font-bold text-white text-lg mb-4" data-key="nav-partners">合作伙伴</h5>
+                    <ul class="space-y-3">
+                        <li><a href="#" onclick="showPage('partner-xfusion')" class="text-gray-400 hover:text-white" data-key="nav-partner-xfusion">我们与XFusion的合作</a></li>
+                        <li><a href="#" onclick="showPage('partner-aliyun')" class="text-gray-400 hover:text-white" data-key="nav-partner-aliyun">与阿里云的合作</a></li>
+                        <li><a href="#" onclick="showPage('partner-clight')" class="text-gray-400 hover:text-white" data-key="nav-partner-clight">与华电晨光的合作</a></li>
+                    </ul>
+                </div>
+                
+                <!-- 4.5 链接组 4: 公司 -->
                 <div>
                     <h5 class="font-bold text-white text-lg mb-4" data-key="nav-company">公司</h5>
                     <ul class="space-y-3">
                         <li><a href="#" onclick="showPage('about')" class="text-gray-400 hover:text-white" data-key="nav-about">关于我们</a></li>
-                        <li><a href="#" onclick="showPage('partner-xfusion')" class="text-gray-400 hover:text-white" data-key="nav-partners">合作伙伴</a></li>
-                    </ul>
-                </div>
-                
-                <!-- 4.5 链接组 4: 联系 -->
-                <div>
-                    <h5 class="font-bold text-white text-lg mb-4" data-key="nav-connect">保持联系</h5>
-                    <ul class="space-y-3">
                         <li><a href="#" onclick="showPage('contact')" class="text-gray-400 hover:text-white" data-key="nav-contact">联系我们</a></li>
                     </ul>
                 </div>
@@ -670,7 +672,10 @@
         // --- 4. 移动菜单 (Mobile Menu) ---
         function closeMobileMenu() {
             const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.add('-translate-x-full');
+            // FIX: 增加一个空值检查
+            if (mobileMenu) {
+                mobileMenu.classList.add('-translate-x-full');
+            }
         }
 
         // --- 5. DOM 加载完成后的事件绑定 ---
@@ -681,11 +686,18 @@
             const mobileMenuCloseButton = document.getElementById('mobile-menu-close-button');
             const mobileMenu = document.getElementById('mobile-menu');
             
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.remove('-translate-x-full');
-            });
+            // FIX: Add null checks to prevent crash if elements are missing
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    if (mobileMenu) {
+                        mobileMenu.classList.remove('-translate-x-full');
+                    }
+                });
+            }
             
-            mobileMenuCloseButton.addEventListener('click', closeMobileMenu);
+            if (mobileMenuCloseButton) {
+                mobileMenuCloseButton.addEventListener('click', closeMobileMenu);
+            }
             
             // 移动菜单中的导航链接
             document.querySelectorAll('.mobile-nav-link').forEach(link => {
@@ -711,7 +723,10 @@
             });
 
             // 更新页脚年份
-            document.getElementById('current-year').textContent = new Date().getFullYear();
+            const yearEl = document.getElementById('current-year');
+            if (yearEl) {
+                yearEl.textContent = new Date().getFullYear();
+            }
 
             // 默认设置语言 (例如从浏览器检测或保持 'ZH')
              // switchLanguage('ZH'); // 默认加载中文
