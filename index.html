@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <!-- 语言属性将由JS动态更改 -->
 <html lang="zh-CN" class="scroll-smooth">
 <head>
@@ -64,6 +64,38 @@
             background-color: #F5F7FA; /* brand-gray */
         }
     </style>
+
+    <!-- Embedded from 软件平台.html -->
+    <style>
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* 自定义活动标签样式 */
+        .tab-active {
+            border-bottom-color: #3b82f6; /* 蓝色底边 */
+            color: #3b82f6; /* 蓝色文字 */
+            font-weight: 600;
+        }
+        /* 模拟闪烁警报 */
+        @keyframes pulse-red {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .animate-pulse-red {
+            animation: pulse-red 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        /* 3D 机柜的悬停效果 */
+        .rack-3d {
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .rack-3d:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+    
+    </style>
 </head>
 
 <body class="bg-brand-light text-gray-900">
@@ -90,6 +122,7 @@
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <div class="absolute top-full left-0 mt-2 w-60 bg-white shadow-lg rounded-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10 overflow-hidden">
+                            <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="platform-os" onclick="showPage('platform-os')">AIos 软件平台</a>
                             <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="product-hd200" onclick="showPage('product-hd200')">HD Micro-Module 200</a>
                             <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="product-hd300" onclick="showPage('product-hd300')">HD Micro-Module 300 & 400</a>
                             <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="product-hd1000" onclick="showPage('product-hd1000')">HD Micro-Module 1000 系列</a>
@@ -108,6 +141,24 @@
                         </div>
                     </div>
 
+
+                    <!-- AI 数据中心操作系统 下拉菜单 -->
+                    <div class="relative group">
+                        <button class="nav-link text-gray-700 hover:text-brand-primary font-medium flex items-center" data-key="nav-os">
+                            <span class="hidden xl:inline">AI 数据中心操作系统</span>
+                            <span class="xl:hidden">AI DC OS</span>
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-72 bg-white shadow-lg rounded-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10 overflow-hidden">
+                            <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="platform-os" onclick="showPage('platform-os')" data-key="nav-os-overview">平台总览 / Overview</a>
+                            <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="platform-dcim1" onclick="showPage('platform-os')" data-key="nav-os-dcim1">DCIM 1.0（风冷优化）</a>
+                            <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="platform-dcim2" onclick="showPage('platform-os')" data-key="nav-os-dcim2">DCIM 2.0（混合液冷）</a>
+                            <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="platform-dcim3" onclick="showPage('platform-os')" data-key="nav-os-dcim3">DCIM 3.0（数字孪生）</a>
+                            <a href="#" class="block px-5 py-3 text-brand-primary hover:bg-brand-gray" data-page="platform-os" onclick="showPage('platform-os')" data-key="nav-os-demo">演示（站内）/ Live Demo</a>
+                        </div>
+                    </div>
+
+
                     <!-- 合作伙伴 下拉菜单 -->
                     <div class="relative group">
                         <button class="nav-link text-gray-700 hover:text-brand-primary font-medium flex items-center" data-key="nav-partners">
@@ -116,7 +167,7 @@
                         </button>
                         <div class="absolute top-full left-0 mt-2 w-60 bg-white shadow-lg rounded-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10 overflow-hidden">
                             <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="partner-xfusion" onclick="showPage('partner-xfusion')" data-key="nav-partner-xfusion">我们与XFusion的合作</a>
-                            <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="partner-aliyun" onclick="showPage('partner-aliyun')" data-key="nav-partner-aliyun">与阿里云的合作</a>
+                            <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="partner-envicool" onclick="showPage('partner-envicool')" data-key="nav-partner-envicool">与 Envicool 的合作</a>
                             <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="partner-clight" onclick="showPage('partner-clight')" data-key="nav-partner-clight">与华电晨光的合作</a>
                         </div>
                     </div>
@@ -168,6 +219,7 @@
             <div class="text-xl text-gray-800">
                 <span data-key="nav-products">产品中心</span>
                 <div class="flex flex-col pl-4 mt-2 space-y-3">
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="platform-os" onclick="showPage('platform-os')">AIos 软件平台</a>
                     <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="product-hd200">HD Micro-Module 200</a>
                     <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="product-hd300">HD Micro-Module 300 & 400</a>
                     <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="product-hd1000">HD Micro-Module 1000 系列</a>
@@ -182,11 +234,24 @@
                 </div>
             </div>
 
+
+            <div class="text-xl text-gray-800">
+                <span data-key="nav-os">AI 数据中心操作系统</span>
+                <div class="flex flex-col pl-4 mt-2 space-y-3">
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="platform-os" onclick="showPage('platform-os')" data-key="nav-os-overview">平台总览 / Overview</a>
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="platform-dcim1" onclick="showPage('platform-os')" data-key="nav-os-dcim1">DCIM 1.0（风冷优化）</a>
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="platform-dcim2" onclick="showPage('platform-os')" data-key="nav-os-dcim2">DCIM 2.0（混合液冷）</a>
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="platform-dcim3" onclick="showPage('platform-os')" data-key="nav-os-dcim3">DCIM 3.0（数字孪生）</a>
+                    <a href="#" class="mobile-nav-link text-lg text-brand-primary" data-page="platform-os" onclick="showPage('platform-os')" data-key="nav-os-demo">演示（站内）/ Live Demo</a>
+                </div>
+            </div>
+
+
             <div class="text-xl text-gray-800">
                 <span data-key="nav-partners">合作伙伴</span>
                 <div class="flex flex-col pl-4 mt-2 space-y-3">
                     <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="partner-xfusion" data-key="nav-partner-xfusion">我们与XFusion的合作</a>
-                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="partner-aliyun" data-key="nav-partner-aliyun">与阿里云的合作</a>
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="partner-envicool" data-key="nav-partner-envicool">与 Envicool 的合作</a>
                     <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="partner-clight" data-key="nav-partner-clight">与华电晨光的合作</a>
                 </div>
             </div>
@@ -250,7 +315,7 @@
                         <p class="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto" data-key="product-family-subtitle">从企业级应用到AI高密度计算，我们的微模块方案覆盖您的全部需求。</p>
                     </div>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                         <!-- 卡片 1 (HD-200) -->
                         <div class="bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
                             <img src="https://placehold.co/600x400/eeeeee/aaaaaa?text=HD-200+Product" alt="HD Micro-Module 200" class="w-full h-56 object-cover">
@@ -279,6 +344,17 @@
                                 <p class="text-lg font-semibold text-brand-primary mb-4" data-key="product-card3-tag">极致密度 · 液冷散热</p>
                                 <p class="text-gray-700 mb-6" data-key="product-card3-desc">专为AI工作负载设计的创新解决方案。</p>
                                 <a href="#" onclick="showPage('product-hd1000')" class="font-medium text-brand-primary hover:text-brand-dark transition duration-300" data-key="learn-more">了解更多 &rarr;</a>
+                            </div>
+                        </div>
+                    
+                        <!-- 卡片 4 (AIos 软件平台) -->
+                        <div class="bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                            <img src="https://placehold.co/600x400/cfcfcf/888888?text=AIos+Platform" alt="AIos 软件平台" class="w-full h-56 object-cover">
+                            <div class="p-8">
+                                <h3 class="text-2xl font-bold text-brand-dark mb-3">AIos 软件平台</h3>
+                                <p class="text-lg font-semibold text-brand-primary mb-4">DCIM → 液冷 → 数字孪生</p>
+                                <p class="text-gray-700 mb-6">一体化 AI 数据中心操作系统。</p>
+                                <a href="#" onclick="showPage('platform-os')" class="font-medium text-brand-primary hover:text-brand-dark">立即查看 &rarr;</a>
                             </div>
                         </div>
                     </div>
@@ -363,43 +439,32 @@
         <!-- 3.2 产品页 (模板 - HD-1000) -->
         <section id="product-hd1000" class="page-content py-16 md:py-24">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- 页面内容... -->
                 <h1 class="text-4xl font-bold text-brand-dark mb-4">HD Micro-Module 1000 系列</h1>
-                <p class="text-2xl text-brand-primary mb-8" data-key="hd1000-tagline">以芯片级液冷技术，释放AI全部潜能。</p>
-                
+                <p class="text-2xl text-brand-primary mb-8">面向 AI 的液冷技术栈：芯片直触 (DTC) 与 背板热交换器 (RDHx)</p>
                 <div class="bg-white p-8 rounded-lg shadow-xl border border-gray-200">
-                    <h2 class="text-2xl font-bold mb-6" data-key="hd1000-features-title">核心优势</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <!-- 特性 1 -->
-                        <div class="text-center p-4">
-                            <svg class="w-12 h-12 text-brand-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                            <h3 class="text-lg font-semibold mb-2" data-key="hd1000-feature1-title">极致密度</h3>
-                            <p class="text-gray-700" data-key="hd1000-feature1-desc">支持单机柜超过30kW的功率密度。</p>
+                    <h2 class="text-2xl font-bold mb-6">核心形态</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="p-6 border rounded-xl">
+                            <h3 class="text-xl font-semibold mb-2">芯片直触 (DTC)</h3>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                <li>直连冷板，最大化换热效率</li>
+                                <li>适配高功耗 GPU（>700W/卡）</li>
+                                <li>冗余流道、快接与泄漏监测</li>
+                            </ul>
                         </div>
-                        <!-- 特性 2 -->
-                        <div class="text-center p-4">
-                            <svg class="w-12 h-12 text-brand-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.66-15.66l-.7.7M4.04 19.96l-.7.7M21 12h-1M4 12H3m16.66-4.66l-.7-.7M4.04 4.04l-.7-.7"></path></svg>
-                            <h3 class="text-lg font-semibold mb-2" data-key="hd1000-feature2-title">巅峰能效</h3>
-                            <p class="text-gray-700" data-key="hd1000-feature2-desc">通过先进液冷技术，显著降低PUE。</p>
-                        </div>
-                        <!-- 特性 3 -->
-                        <div class="text-center p-4">
-                            <svg class="w-12 h-12 text-brand-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16v4m-2-2h4m5 11v4m-2-2h4M12 3v16"></path></svg>
-                            <h3 class="text-lg font-semibold mb-2" data-key="hd1000-feature3-title">AI优化</h3>
-                            <p class="text-gray-700" data-key="hd1000-feature3-desc">专为XFusion AI服务器设计并完成验证。</p>
-                        </div>
-                        <!-- 特性 4 -->
-                        <div class="text-center p-4">
-                            <svg class="w-12 h-12 text-brand-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657L13.414 14.414m-2.828-2.828l-1.414-1.414L6.343 13l-2.121-2.121l1.414-1.414L8.464 6.636l1.414-1.414l2.828 2.828l1.414 1.414L17.657 13l2.121 2.121l-1.414 1.414L15.536 19.364l-1.414 1.414l-2.828-2.828z"></path></svg>
-                            <h3 class="text-lg font-semibold mb-2" data-key="hd1000-feature4-title">可持续计算</h3>
-                            <p class="text-gray-700" data-key="hd1000-feature4-desc">降低您的碳足迹和能源成本。</p>
+                        <div class="p-6 border rounded-xl">
+                            <h3 class="text-xl font-semibold mb-2">背板热交换器 (RDHx)</h3>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                <li>机柜级换热，兼容现有风冷</li>
+                                <li>快速部署，存量机房改造友好</li>
+                                <li>平滑过渡到更高比例液冷</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                
-                <p class="text-center text-xl text-gray-700 mt-16" data-key="page-in-construction">... 更多页面内容正在建设中 ...</p>
+                <p class="text-center text-xl text-gray-700 mt-16">... 更多技术细节将随实装版本更新 ...</p>
             </div>
-        </section>
+    </section>
 
         <!-- 3.3 解决方案：AI & HPC -->
         <section id="solution-ai" class="page-content py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
@@ -414,9 +479,9 @@
         </section>
         
         <!-- 新增：阿里云 -->
-        <section id="partner-aliyun" class="page-content py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 class="text-4xl font-bold text-brand-dark mb-4" data-key="partner-aliyun-title">合作伙伴：阿里云</h1>
-            <p class="text-xl text-gray-700 mb-8" data-key="partner-aliyun-subtitle">全球IDC建设</p>
+        <section id="partner-envicool" class="page-content py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold text-brand-dark mb-4" data-key="partner-envicool-title">合作伙伴：Envicool</h1>
+            <p class="text-xl text-gray-700 mb-8" data-key="partner-envicool-subtitle">全球IDC建设</p>
             <p class="text-center text-xl text-gray-700 mt-16" data-key="page-in-construction">... 页面内容正在建设中 ...</p>
         </section>
 
@@ -426,6 +491,478 @@
             <p class="text-xl text-gray-700 mb-8" data-key="partner-clight-subtitle">全系列物理链路提供商</p>
             <p class="text-center text-xl text-gray-700 mt-16" data-key="page-in-construction">... 页面内容正在建设中 ...</p>
         </section>
+
+
+        <!-- 新增：AI 数据中心操作系统 页面 -->
+        <section id="platform-os" class="page-content py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
+<div id="aios-embedded" class="aios-wrapper">
+ <!-- 更改了背景 -->
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <!-- 顶部标题 -->
+        <header class="mb-6">
+            <h1 class="text-3xl font-bold text-gray-900">DCIM 软件演进：从风冷到液冷</h1>
+            <p class="text-lg text-gray-600">展示数据中心监控 (DCIM) 如何演变为下一代 AI 基础设施的操作系统</p>
+        </header>
+
+        <!-- 标签页导航 -->
+        <div class="mb-6 border-b border-gray-200 bg-white rounded-t-lg shadow-sm">
+            <nav class="flex -mb-px space-x-6 px-6" aria-label="Tabs">
+                <button onclick="changeTab('stage1')" id="tab-stage1" class="tab-button tab-active py-4 px-1 border-b-2 font-medium text-sm">
+                    阶段 1: DCIM 1.0 (风冷优化)
+                </button>
+                <button onclick="changeTab('stage2')" id="tab-stage2" class="tab-button text-gray-500 hover:text-gray-700 hover:border-gray-300 py-4 px-1 border-b-2 border-transparent font-medium text-sm">
+                    阶段 2: DCIM 2.0 (混合管理)
+                </button>
+                <button onclick="changeTab('stage3')" id="tab-stage3" class="tab-button text-gray-500 hover:text-gray-700 hover:border-gray-300 py-4 px-1 border-b-2 border-transparent font-medium text-sm">
+                    阶段 3: DCIM 3.0 (数字孪生)
+                </button>
+            </nav>
+        </div>
+
+        <!-- 内容区域 -->
+        <main>
+            <!-- 阶段 1: DCIM 1.0 内容 -->
+            <div id="content-stage1" class="tab-content grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <!-- 左侧: 3D 热图 -->
+                <div class="lg:col-span-2 bg-white p-6 rounded-lg shadow-xl"> <!-- 增强了阴影 -->
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Demo 1.1: 实时 3D 热图 (CFD 模拟)</h2>
+                    <div class="relative w-full h-96 bg-gray-200 rounded-lg overflow-hidden border border-gray-300 p-4">
+                        <!-- 模拟的 3D 机柜布局 -->
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style="transform-style: preserve-3d; transform: perspective(800px) rotateX(60deg) rotateZ(-45deg);">
+                            <div class="grid grid-cols-4 gap-4">
+                                <!-- 模拟机柜 (更新样式) -->
+                                <div class="rack-3d w-16 h-24 bg-blue-600 rounded-t-lg border-2 border-blue-800 border-b-8 border-b-blue-900" title="机柜 A1"></div>
+                                <div class="rack-3d w-16 h-24 bg-blue-500 rounded-t-lg border-2 border-blue-700 border-b-8 border-b-blue-800" title="机柜 A2"></div>
+                                <div class="rack-3d w-16 h-24 bg-red-600 rounded-t-lg border-2 border-red-800 border-b-8 border-b-red-900 animate-pulse-red" title="机柜 A3 (热点!)"></div>
+                                <div class="rack-3d w-16 h-24 bg-blue-500 rounded-t-lg border-2 border-blue-700 border-b-8 border-b-blue-800" title="机柜 A4"></div>
+                                <div class="rack-3d w-16 h-24 bg-blue-600 rounded-t-lg border-2 border-blue-800 border-b-8 border-b-blue-900" title="机柜 B1"></div>
+                                <div class="rack-3d w-16 h-24 bg-blue-600 rounded-t-lg border-2 border-blue-800 border-b-8 border-b-blue-900" title="机柜 B2"></div>
+                                <div class="rack-3d w-16 h-24 bg-blue-500 rounded-t-lg border-2 border-blue-700 border-b-8 border-b-blue-800" title="机柜 B3"></div>
+                                <div class="rack-3d w-16 h-24 bg-blue-600 rounded-t-lg border-2 border-blue-800 border-b-8 border-b-blue-900" title="机柜 B4"></div>
+                            </div>
+                        </div>
+                        <!-- 热图图例 -->
+                        <div class="absolute bottom-4 left-4 bg-white/80 backdrop-blur-sm p-3 rounded-md shadow-lg">
+                            <h4 class="text-xs font-bold mb-2 text-gray-700">热图图例</h4>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-4 h-4 rounded-full bg-red-600 border border-red-800"></div><span class="text-xs font-medium text-gray-700">热点 / 低效</span>
+                            </div>
+                            <div class="flex items-center space-x-2 mt-2">
+                                <div class="w-4 h-4 rounded-full bg-blue-600 border border-blue-800"></div><span class="text-xs font-medium text-gray-700">冷通道 / 正常</span>
+                            </div>
+                        </div>
+                        <div class="absolute top-4 left-4 bg-red-100 text-red-800 text-sm font-semibold p-3 rounded-lg shadow-lg border border-red-200">
+                            <div class="flex items-center">
+                                <hero-icon-solid:exclamation-triangle class="h-5 w-5 mr-2"></hero-icon-solid:exclamation-triangle>
+                                <span>检测到热空气再循环！ (机柜 A3)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧: 指标 -->
+                <div class="lg:col-span-1 space-y-6">
+                    <!-- PUE 仪表盘 -->
+                    <div class="bg-white p-6 rounded-lg shadow-xl">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4">PUE 仪表盘</h2>
+                        <div class="text-center mb-4">
+                            <span class="text-6xl font-bold text-blue-600">1.58</span>
+                            <span class="text-lg text-gray-500 ml-1">PUE</span>
+                        </div>
+                        <div>
+                            <span class="text-sm font-medium text-gray-600">IT 负载</span>
+                            <div class="w-full bg-gray-200 rounded-full h-4 mt-1">
+                                <div class="bg-blue-600 h-4 rounded-full" style="width: 63%"></div>
+                            </div>
+                            <span class="text-xs text-gray-500">630 kW</span>
+                        </div>
+                        <div class="mt-3">
+                            <span class="text-sm font-medium text-gray-600">冷却 (CRAC 风扇等)</span>
+                            <div class="w-full bg-gray-200 rounded-full h-4 mt-1">
+                                <div class="bg-orange-500 h-4 rounded-full" style="width: 37%"></div>
+                            </div>
+                             <span class="text-xs text-gray-500">370 kW (高!)</span>
+                        </div>
+                    </div>
+
+                    <!-- 环境健康 -->
+                    <div class="bg-white p-6 rounded-lg shadow-xl">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4">环境健康 (ASHRAE 标准)</h2>
+                        <ul class="space-y-3">
+                            <li class="flex items-center justify-between p-3 bg-gray-50 rounded-md">
+                                <span class="text-gray-700 font-medium">机柜 A1 (入口)</span>
+                                <span class="flex items-center text-green-600 font-semibold">
+                                    <hero-icon-solid:check-circle class="h-5 w-5 mr-1"></hero-icon-solid:check-circle>
+                                    22.5°C (正常)
+                                </span>
+                            </li>
+                            <li class="flex items-center justify-between p-3 bg-gray-50 rounded-md">
+                                <span class="text-gray-700 font-medium">机柜 B2 (入口)</span>
+                                <span class="flex items-center text-green-600 font-semibold">
+                                     <hero-icon-solid:check-circle class="h-5 w-5 mr-1"></hero-icon-solid:check-circle>
+                                    23.1°C (正常)
+                                </span>
+                            </li>
+                            <li class="flex items-center justify-between p-3 bg-red-100 rounded-md">
+                                <span class="text-gray-700 font-medium">机柜 A3 (入口)</span>
+                                <span class="flex items-center text-red-600 font-semibold animate-pulse-red">
+                                    <hero-icon-solid:exclamation-circle class="h-5 w-5 mr-1"></hero-icon-solid:exclamation-circle>
+                                    29.4°C (过高!)
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 重大更新：核心微监控模块 (图形化) -->
+                    <div class="bg-white p-6 rounded-lg shadow-xl">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4">核心微监控 (DCIM 1.0)</h2>
+                        <div class="grid grid-cols-2 gap-4">
+                            
+                            <!-- UPS 卡片 -->
+                            <div class="bg-gray-50 rounded-lg p-4 flex items-center space-x-3 border border-gray-200">
+                                <hero-icon-outline:server-stack class="h-10 w-10 text-blue-600"></hero-icon-outline:server-stack>
+                                <div>
+                                    <div class="text-sm font-semibold text-gray-700">UPS</div>
+                                    <div class="text-xs font-medium text-green-600">正常 (在线)</div>
+                                </div>
+                            </div>
+                            
+                            <!-- PDU 卡片 -->
+                            <div class="bg-gray-50 rounded-lg p-4 flex items-center space-x-3 border border-gray-200">
+                                <hero-icon-outline:bolt class="h-10 w-10 text-blue-600"></hero-icon-outline:bolt>
+                                <div>
+                                    <div class="text-sm font-semibold text-gray-700">精密配电</div>
+                                    <div class="text-xs font-medium text-green-600">正常 (65%)</div>
+                                </div>
+                            </div>
+                            
+                            <!-- 智能电表 卡片 -->
+                            <div class="bg-gray-50 rounded-lg p-4 flex items-center space-x-3 border border-gray-200">
+                                <hero-icon-outline:clock class="h-10 w-10 text-gray-600"></hero-icon-outline:clock>
+                                <div>
+                                    <div class="text-sm font-semibold text-gray-700">智能电表</div>
+                                    <div class="text-xs font-medium text-green-600">通信中</div>
+                                </div>
+                            </div>
+
+                            <!-- 漏水检测 卡片 -->
+                            <div class="bg-gray-50 rounded-lg p-4 flex items-center space-x-3 border border-gray-200">
+                                <hero-icon-outline:exclamation-triangle class="h-10 w-10 text-gray-600"></hero-icon-outline:exclamation-triangle>
+                                <div>
+                                    <div class="text-sm font-semibold text-gray-700">漏水检测</div>
+                                    <div class="text-xs font-medium text-green-600">未检测到</div>
+                                </div>
+                            </div>
+                            
+                            <!-- 消防系统 卡片 -->
+                            <div class="bg-gray-50 rounded-lg p-4 flex items-center space-x-3 border border-gray-200">
+                                <hero-icon-outline:fire class="h-10 w-10 text-red-600"></hero-icon-outline:fire>
+                                <div>
+                                    <div class="text-sm font-semibold text-gray-700">消防系统</div>
+                                    <div class="text-xs font-medium text-green-600">待命</div>
+                                </div>
+                            </div>
+                            
+                            <!-- 气体检测 卡片 -->
+                            <div class="bg-gray-50 rounded-lg p-4 flex items-center space-x-3 border border-gray-200">
+                                <hero-icon-outline:beaker class="h-10 w-10 text-gray-600"></hero-icon-outline:beaker>
+                                <div>
+                                    <div class="text-sm font-semibold text-gray-700">气体检测</div>
+                                    <div class="text-xs font-medium text-green-600">未检测到</div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 阶段 2: DCIM 2.0 内容 -->
+            <div id="content-stage2" class="tab-content hidden grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- 左侧: 液冷回路 & 智能警报 -->
+                <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Demo 2.1: 液冷回路健康仪表盘</h2>
+                    <p class="text-sm text-gray-600 mb-4">新模块: CDU (冷却分配单元) 监控</p>
+                    
+                    <!-- 模拟 CDU 示意图 (更新图形) -->
+                    <div class="relative flex items-center justify-around h-64 bg-gray-50 border border-gray-200 rounded-lg p-4">
+                        <div class="text-center">
+                            <hero-icon-outline:building-office class="h-20 w-20 text-blue-500 mx-auto"></hero-icon-outline:building-office>
+                            <span class="font-bold text-blue-800">设施水</span>
+                            <span class="text-sm text-gray-500 block">18°C (脏水)</span>
+                        </div>
+                        
+                        <div class="text-center p-4">
+                            <hero-icon-outline:arrow-path-rounded-full class="h-16 w-16 text-gray-700 mx-auto animate-spin" style="animation-duration: 3s;"></hero-icon-outline:arrow-path-rounded-full>
+                            <span class="font-bold text-gray-700">CDU / 泵</span>
+                            <p class="text-sm font-medium">4500 RPM</p>
+                        </div>
+
+                        <div class="text-center">
+                            <hero-icon-outline:server-stack class="h-20 w-20 text-green-600 mx-auto"></hero-icon-outline:server-stack>
+                            <span class="font-bold text-green-800">技术冷却液</span>
+                            <span class="text-sm text-gray-500 block">25°C (洁净)</span>
+                        </div>
+                    </div>
+
+                    <!-- 流体动力学 -->
+                    <div class="mt-4 space-y-2">
+                        <h3 class="font-semibold">流体动力学 (AI 集群生命体征)</h3>
+                        <div class="p-3 bg-gray-50 rounded-md border">
+                            <span class="font-medium text-gray-700">回路 1:</span>
+                            <span class="ml-2">流速: <span class="font-bold text-green-700">120 L/min</span></span> |
+                            <span class="ml-2">压力: <span class="font-bold text-green-700">35 PSI</span></span> |
+                            <span class="ml-2">Delta-T: <span class="font-bold text-green-700">8.2°C</span></span>
+                        </div>
+                        <div class="p-3 bg-red-100 rounded-md border border-red-300">
+                            <span class="font-medium text-red-700">回路 2:</span>
+                            <span class="ml-2">流速: <span class="font-bold text-red-700 animate-pulse-red">96 L/min (-20%)</span></span> |
+                            <span class="ml-2">压力: <span class="font-bold text-red-700">42 PSI (异常)</span></span> |
+                            <span class="ml-2">Delta-T: <span class="font-bold text-red-700">10.1°C (高)</span></span>
+                        </div>
+                    </div>
+
+                    <!-- 智能警报 -->
+                    <div class="mt-4 p-4 bg-orange-100 border-l-4 border-orange-500 text-orange-700 rounded-md shadow-md">
+                        <div class="flex">
+                            <div class="py-1">
+                                <hero-icon-solid:information-circle class="h-6 w-6 text-orange-500 mr-3"></hero-icon-solid:information-circle>
+                            </div>
+                            <div>
+                                <p class="font-bold">智能警报：潜在堵塞</p>
+                                <p class="text-sm">“警报：2号机柜流速下降20%，压力异常。可能存在堵塞。已自动将CDU泵速提高15%作为补偿。”</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧: 泄漏检测 & 混合编排 -->
+                <div class="space-y-6">
+                    <!-- 高级泄漏检测 -->
+                    <div class="bg-white p-6 rounded-lg shadow-xl">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4">Demo 2.2: 高级泄漏检测 (流体完整性层)</h2>
+                        <div class="relative w-full h-56 bg-gray-100 rounded-lg p-4 border border-gray-200">
+                            <!-- 模拟机柜和管道 -->
+                            <div class="absolute top-8 left-8 w-16 h-24 bg-gray-300 rounded text-center pt-2 text-sm font-medium text-gray-600">机柜 4A</div>
+                            <div class="absolute top-8 left-32 w-16 h-24 bg-gray-300 rounded text-center pt-2 text-sm font-medium text-gray-600">机柜 4B</div>
+                            <div class="absolute top-8 left-56 w-16 h-24 bg-gray-300 rounded text-center pt-2 text-sm font-medium text-gray-600">机柜 4C</div>
+                            <!-- 模拟绳状传感器 -->
+                            <div class="absolute top-4 left-8 w-64 h-2 border-2 border-dashed border-green-500 rounded-full" title="绳状传感器 (正常)"></div>
+                            <div class="absolute top-36 left-8 w-64 h-2 border-2 border-dashed border-green-500 rounded-full" title="绳状传感器 (正常)"></div>
+                            <!-- 泄漏警报点 -->
+                            <div class="absolute top-32 left-40">
+                                <span class="flex h-5 w-5 relative">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-5 w-5 bg-red-600 border-2 border-white"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-4 bg-red-100 border-l-4 border-red-500 text-red-700 rounded-md shadow-md">
+                            <div class="flex">
+                                <div class="py-1">
+                                    <hero-icon-solid:shield-exclamation class="h-6 w-6 text-red-500 mr-3"></hero-icon-solid:shield-exclamation>
+                                </div>
+                                <div>
+                                    <p class="font-bold">严重泄漏警报</p>
+                                    <p class="text-sm">“严重警报： 在4B机柜的冷板入口歧管处检测到丙二醇液体。已触发自动关闭该回路的隔离阀。”</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 混合编排 -->
+                    <div class="bg-white p-6 rounded-lg shadow-xl">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4">Demo 2.3: 混合编排 (CDU 故障模拟)</h2>
+                        <ul class="space-y-3">
+                            <li class="flex items-start text-red-700">
+                                <hero-icon-solid:exclamation-triangle class="h-5 w-5 mr-2 flex-shrink-0 mt-1"></hero-icon-solid:exclamation-triangle>
+                                <div>
+                                    <span class="font-medium">状态:</span>&nbsp;监测到CDU主泵故障。AI集群温度飙升。
+                                </div>
+                            </li>
+                            <li class="flex items-start text-blue-700">
+                                <hero-icon-solid:check-badge class="h-5 w-5 mr-2 flex-shrink-0 mt-1"></hero-icon-solid:check-badge>
+                                <div>
+                                    <span class="font-medium">自动响应 1:</span>&nbsp;已向工程师发出 P1 警报。
+                                </div>
+                            </li>
+                            <li class="flex items-start text-blue-700">
+                                <hero-icon-solid:check-badge class="h-5 w-5 mr-2 flex-shrink-0 mt-1"></hero-icon-solid:check-badge>
+                                <div>
+                                    <span class="font-medium">自动响应 2:</span>&nbsp;自动将精密空调 (风冷) 设定点调至18°C，风扇100%，以延长服务器时间窗口。
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 阶段 3: DCIM 3.0 内容 -->
+            <div id="content-stage3" class="tab-content hidden grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                <!-- 左侧: 数字孪生 & 流体化学 -->
+                <div class="space-y-6">
+                    <!-- 数字孪生 -->
+                    <div class="bg-white p-6 rounded-lg shadow-xl">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4">Demo 3.1: 数字孪生 "假设" 分析</h2>
+                        <div class="mb-4">
+                            <label for="what-if" class="block text-sm font-medium text-gray-700">模拟场景:</label>
+                            <div class="mt-1 flex rounded-md shadow-sm">
+                                <input type="text" name="what-if" id="what-if" class="flex-1 block w-full rounded-none rounded-l-md border-gray-300 p-2 text-gray-500" value="添加 NVIDIA Vera Rubin (600kW) 到 5号机架" readonly>
+                                <button class="relative -ml-px inline-flex items-center space-x-2 rounded-r-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">
+                                    <hero-icon-solid:play class="h-5 w-5"></hero-icon-solid:play>
+                                    <span>运行模拟</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-gray-700">模拟结果 (15秒后):</h3>
+                            <ul class="list-disc list-inside mt-2 space-y-1 text-sm">
+                                <li class="text-gray-600"><span class="font-medium">CDU 总容量:</span> 达到 <span class="font-bold text-orange-600">92%</span> (警告: 接近上限)</li>
+                                <li class="text-gray-600"><span class="font-medium">回水温度:</span> 预计上升 <span class="font-bold text-red-600">4.5°C</span></li>
+                                <li class="text-gray-600"><span class="font-medium">物理风险:</span> 无。</li>
+                                <li class="text-blue-600 font-medium">结论: 需要增加CDU容量以支持此负载。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 流体化学 -->
+                    <div class="bg-white p-6 rounded-lg shadow-xl">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4">Demo 3.2: 高级流体化学 (两相浸没式)</h2>
+                        <p class="text-sm text-gray-600 mb-4">专家仪表盘 - 浸没罐 #1</p>
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <div>
+                                <div class="text-3xl font-bold text-green-700">1.1 <span class="text-lg">atm</span></div>
+                                <div class="text-sm text-gray-500">罐内压力 (稳定)</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold text-green-700">99.98<span class="text-lg">%</span></div>
+                                <div class="text-sm text-gray-500">流体纯度 (正常)</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold text-green-700">0.05<span class="text-lg">L/hr</span></div>
+                                <div class="text-sm text-gray-500">蒸发损失 (正常)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧: 热能再利用 -->
+                <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Demo 3.3: 热能再利用 (Heat Reuse) ROI 仪表盘</h2>
+                    <p class="text-sm text-gray-600 mb-4">ESG 与能源仪表盘</p>
+                    
+                    <!-- 能源指标 -->
+                    <div class="grid grid-cols-3 gap-4 text-center mb-6 border-b pb-6">
+                        <div>
+                            <div class="text-4xl font-bold text-blue-600">5.2 <span class="text-xl">MW</span></div>
+                            <div class="text-sm text-gray-500">热能输出</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold text-red-600">58<span class="text-xl">°C</span></div>
+                            <div class="text-sm text-gray-500">热能"品位" (高价值)</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold text-green-600">85<span class="text-xl">%</span></div>
+                            <div class="text-sm text-gray-500">热能再利用率</div>
+                        </div>
+                    </div>
+
+                    <!-- 示意图 (更新图形) -->
+                    <div class="flex items-center justify-center space-x-4 text-center mb-6">
+                        <div class="flex flex-col items-center">
+                            <hero-icon-solid:building-office-2 class="h-20 w-20 text-red-600"></hero-icon-solid:building-office-2>
+                            <span class="text-sm font-medium text-gray-700">数据中心 (58°C)</span>
+                            <span class="text-xs text-gray-500">热源</span>
+                        </div>
+                        <div class="text-gray-400 font-bold text-2xl mt-4">&rarr;</div>
+                        <div class="flex flex-col items-center">
+                            <hero-icon-solid:arrows-right-left class="h-16 w-16 text-gray-500 mt-2"></hero-icon-solid:arrows-right-left>
+                            <span class="text-sm font-medium text-gray-700 mt-2">热交换</span>
+                            <span class="text-xs text-gray-500">转移</span>
+                        </div>
+                        <div class="text-gray-400 font-bold text-2xl mt-4">&rarr;</div>
+                        <div class="flex flex-col items-center">
+                            <hero-icon-solid:home-modern class="h-20 w-20 text-green-600"></hero-icon-solid:home-modern>
+                            <span class="text-sm font-medium text-gray-700">园区供暖 (50°C)</span>
+                            <span class="text-xs text-gray-500">再利用</span>
+                        </div>
+                    </div>
+
+                    <!-- ROI & ESG 指标 -->
+                    <h3 class="font-semibold text-gray-700 mb-2">ROI / ESG 指标 (月度)</h3>
+                    <ul class="space-y-2">
+                        <li class="flex justify-between p-3 bg-green-50 rounded-md">
+                            <span class="font-medium text-green-800">节省的天然气:</span>
+                            <span class="font-bold text-green-800">€ 45,000</span>
+                        </li>
+                        <li class="flex justify-between p-3 bg-blue-50 rounded-md">
+                            <span class="font-medium text-blue-800">ERE (能源再利用效率):</span>
+                            <span class="font-bold text-blue-800">0.85</span>
+                        </li>
+                        <li class="flex justify-between p-3 bg-blue-50 rounded-md">
+                            <span class="font-medium text-blue-800">PUE:</span>
+                            <span class="font-bold text-blue-800">1.03 (极佳)</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // JavaScript 逻辑用于切换标签页
+        
+        // 存储当前活动标签
+        let currentStage = 'stage1';
+
+        function changeTab(stage) {
+            if (stage === currentStage) {
+                return; // 如果点击的是当前标签，则不执行任何操作
+            }
+
+            // 隐藏所有内容
+            document.getElementById('content-stage1').classList.add('hidden');
+            document.getElementById('content-stage2').classList.add('hidden');
+            document.getElementById('content-stage3').classList.add('hidden');
+
+            // 移除所有标签的活动状态
+            document.getElementById('tab-stage1').classList.remove('tab-active');
+            document.getElementById('tab-stage2').classList.remove('tab-active');
+            document.getElementById('tab-stage3').classList.remove('tab-active');
+            // 默认样式
+            document.getElementById('tab-stage1').classList.add('text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300', 'border-transparent');
+            document.getElementById('tab-stage2').classList.add('text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300', 'border-transparent');
+            document.getElementById('tab-stage3').classList.add('text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300', 'border-transparent');
+
+
+            // 显示选定的内容
+            document.getElementById('content-' + stage).classList.remove('hidden');
+
+            // 设置选定标签的活动状态
+            const activeTab = document.getElementById('tab-' + stage);
+            activeTab.classList.add('tab-active');
+            activeTab.classList.remove('text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300', 'border-transparent');
+
+            // 更新当前标签
+            currentStage = stage;
+        }
+        
+        // 确保在加载时，默认的标签页是正确设置的
+        // (保持 'stage1' 为默认)
+
+    </script>
+
+
+</div>
+</section>
+
 
         <!-- 其他占位页面 -->
         <section id="product-hd200" class="page-content py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
@@ -493,11 +1030,25 @@
                     <h5 class="font-bold text-white text-lg mb-4" data-key="nav-partners">合作伙伴</h5>
                     <ul class="space-y-3">
                         <li><a href="#" onclick="showPage('partner-xfusion')" class="text-gray-400 hover:text-white" data-key="nav-partner-xfusion">我们与XFusion的合作</a></li>
-                        <li><a href="#" onclick="showPage('partner-aliyun')" class="text-gray-400 hover:text-white" data-key="nav-partner-aliyun">与阿里云的合作</a></li>
+                        <li><a href="#" onclick="showPage('partner-envicool')" class="text-gray-400 hover:text-white" data-key="nav-partner-envicool">与 Envicool 的合作</a></li>
                         <li><a href="#" onclick="showPage('partner-clight')" class="text-gray-400 hover:text-white" data-key="nav-partner-clight">与华电晨光的合作</a></li>
                     </ul>
                 </div>
                 
+
+                <!-- 4.X 链接组 X: AI 数据中心操作系统 -->
+                <div>
+                    <h5 class="font-bold text-white text-lg mb-4" data-key="nav-os">AI 数据中心操作系统</h5>
+                    <ul class="space-y-3">
+                        <li><a href="#" onclick="showPage('platform-os')" class="text-gray-400 hover:text-white" data-key="nav-os-overview">平台总览</a></li>
+                        <li><a href="#" onclick="showPage('platform-os')" class="text-gray-400 hover:text-white" data-key="nav-os-dcim1">DCIM 1.0</a></li>
+                        <li><a href="#" onclick="showPage('platform-os')" class="text-gray-400 hover:text-white" data-key="nav-os-dcim2">DCIM 2.0</a></li>
+                        <li><a href="#" onclick="showPage('platform-os')" class="text-gray-400 hover:text-white" data-key="nav-os-dcim3">DCIM 3.0</a></li>
+                        <li><a href="#" onclick="showPage('platform-os')" class="text-blue-400 hover:text-white" data-key="nav-os-demo">Live Demo</a></li>
+                    </ul>
+                </div>
+
+
                 <!-- 4.5 链接组 4: 公司 -->
                 <div>
                     <h5 class="font-bold text-white text-lg mb-4" data-key="nav-company">公司</h5>
@@ -552,7 +1103,7 @@
                 'nav-solution-edge': '边缘计算与IoT',
                 'nav-partners': '合作伙伴',
                 'nav-partner-xfusion': '我们与XFusion的合作',
-                'nav-partner-aliyun': '与阿里云的合作',
+                'nav-partner-envicool': '与 Envicool 的合作',
                 'nav-partner-clight': '与华电晨光的合作',
                 'nav-about': '关于我们',
                 'nav-contact': '联系我们',
@@ -579,8 +1130,8 @@
                 'footer-desc': 'HDS 作为华电晨光的海外市场总代理，以智能、可扩展且可持续的数据中心基础设施，赋能欧洲和亚洲的AI与边缘计算变革。',
                 'page-in-construction': '... 页面内容正在建设中 ...',
                 
-                'partner-aliyun-title': '合作伙伴：阿里云',
-                'partner-aliyun-subtitle': '全球IDC建设',
+                'partner-envicool-title': '合作伙伴：Envicool',
+                'partner-envicool-subtitle': '全球IDC建设',
                 'partner-clight-title': '合作伙伴：华电晨光',
                 'partner-clight-subtitle': '全系列物理链路提供商',
                 
@@ -610,7 +1161,7 @@
                 'nav-solution-edge': 'Edge Computing & IoT',
                 'nav-partners': 'Partners',
                 'nav-partner-xfusion': 'Our XFusion Partnership',
-                'nav-partner-aliyun': 'Our Alibaba Cloud Partnership',
+                'nav-partner-envicool': 'Our Alibaba Cloud Partnership',
                 'nav-partner-clight': 'Our Huadian C-light Partnership',
                 'nav-about': 'About Us',
                 'nav-contact': 'Contact Us',
@@ -637,8 +1188,8 @@
                 'footer-desc': 'As the official overseas agent for Huadian C-light, HDS empowers the AI and edge computing transformation in Europe and Asia with smart, scalable, and sustainable data center infrastructure.',
                 'page-in-construction': '... Page content is under construction ...',
 
-                'partner-aliyun-title': 'Partner: Alibaba Cloud',
-                'partner-aliyun-subtitle': 'Global IDC Construction',
+                'partner-envicool-title': 'Partner: Alibaba Cloud',
+                'partner-envicool-subtitle': 'Global IDC Construction',
                 'partner-clight-title': 'Partner: Huadian C-light',
                 'partner-clight-subtitle': 'Full-range Physical Link Provider',
                 
@@ -809,6 +1360,81 @@
              // switchLanguage('ZH'); // 默认加载中文
         });
 
+    </script>
+
+
+<!-- Embedded scripts from 软件平台.html -->
+<script type="module" src="https://unpkg.com/heroicons@2.1.3/24/outline/dist/index.js"></script>
+<script type="module" src="https://unpkg.com/heroicons@2.1.3/24/solid/dist/index.js"></script>
+<script>
+        // JavaScript 逻辑用于切换标签页
+        
+        // 存储当前活动标签
+        let currentStage = 'stage1';
+
+        function changeTab(stage) {
+            if (stage === currentStage) {
+                return; // 如果点击的是当前标签，则不执行任何操作
+            }
+
+            // 隐藏所有内容
+            document.getElementById('content-stage1').classList.add('hidden');
+            document.getElementById('content-stage2').classList.add('hidden');
+            document.getElementById('content-stage3').classList.add('hidden');
+
+            // 移除所有标签的活动状态
+            document.getElementById('tab-stage1').classList.remove('tab-active');
+            document.getElementById('tab-stage2').classList.remove('tab-active');
+            document.getElementById('tab-stage3').classList.remove('tab-active');
+            // 默认样式
+            document.getElementById('tab-stage1').classList.add('text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300', 'border-transparent');
+            document.getElementById('tab-stage2').classList.add('text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300', 'border-transparent');
+            document.getElementById('tab-stage3').classList.add('text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300', 'border-transparent');
+
+
+            // 显示选定的内容
+            document.getElementById('content-' + stage).classList.remove('hidden');
+
+            // 设置选定标签的活动状态
+            const activeTab = document.getElementById('tab-' + stage);
+            activeTab.classList.add('tab-active');
+            activeTab.classList.remove('text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300', 'border-transparent');
+
+            // 更新当前标签
+            currentStage = stage;
+        }
+        
+        // 确保在加载时，默认的标签页是正确设置的
+        // (保持 'stage1' 为默认)
+
+    </script>
+
+    <script>
+      (function(){
+        window.i18n = (window.i18n || {});
+        window.i18n.ZH = Object.assign({}, window.i18n.ZH || {}, {
+          'nav-os': 'AI 数据中心操作系统',
+          'nav-os-overview': '平台总览 / Overview',
+          'nav-os-dcim1': 'DCIM 1.0（风冷优化）',
+          'nav-os-dcim2': 'DCIM 2.0（混合液冷）',
+          'nav-os-dcim3': 'DCIM 3.0（数字孪生）',
+          'nav-os-demo': '演示（站内）/ Live Demo',
+          'os-lead': 'HDS (Singapore) 与合作伙伴共同打造的下一代 DCIM/液冷/数字孪生一体化平台。',
+          'partner-envicool-title': '合作伙伴：Envicool',
+          'partner-envicool-subtitle': '全球IDC建设'
+        });
+        window.i18n.EN = Object.assign({}, window.i18n.EN || {}, {
+          'nav-os': 'AI DC Operating System',
+          'nav-os-overview': 'Overview',
+          'nav-os-dcim1': 'DCIM 1.0 (Air Cooling Optimization)',
+          'nav-os-dcim2': 'DCIM 2.0 (Hybrid Liquid Cooling)',
+          'nav-os-dcim3': 'DCIM 3.0 (Digital Twin)',
+          'nav-os-demo': 'Live Demo (Inline)',
+          'os-lead': 'An integrated platform for next‑gen DCIM, liquid cooling and digital twin.',
+          'partner-envicool-title': 'Partner: Envicool',
+          'partner-envicool-subtitle': 'Global IDC build'
+        });
+      })();
     </script>
 
 </body>
