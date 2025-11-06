@@ -136,9 +136,11 @@
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <div class="absolute top-full left-0 mt-2 w-60 bg-white shadow-lg rounded-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10 overflow-hidden">
-                            <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="solution-ai" onclick="showPage('solution-ai')" data-key="nav-solution-ai">人工智能与HPC</a>
-                            <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" data-page="solution-edge" onclick="showPage('solution-edge')" data-key="nav-solution-edge">边缘计算与IoT</a>
-                        </div>
+                            <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" onclick="showPage('solutions')"><span id="sol-ai-orch"></span>AI 驱动的热管理（AI-Driven Orchestration）</a>
+                            <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" onclick="showPage('solutions')">混合液冷：DLC + RDHx 路线</a>
+                            <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" onclick="showPage('solutions')"><span id="sol-freecool"></span>自由冷却 + 间接/直接绝热</a>
+                            <a href="#" class="block px-5 py-3 text-gray-700 hover:bg-brand-gray" onclick="showPage('solutions')"><span id="sol-dt"></span>数字孪生辅助运维</a>
+</div>
                     </div>
 
 
@@ -269,16 +271,20 @@
             </div>
 
             <!-- Submenu: 解决方案 -->
-            <div id="sub-solutions" class="hidden">
-                <div class="flex items-center space-x-3 mb-4">
-                    <button class="text-gray-700" data-back><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
-                    <h3 class="text-xl font-semibold" data-key="nav-solutions">解决方案</h3>
-                </div>
-                <div class="flex flex-col space-y-3 pl-2">
-                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="solution-ai" onclick="showPage('solution-ai'); closeMobileMenu()" data-key="nav-solution-ai">人工智能与HPC</a>
-                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="solution-edge" onclick="showPage('solution-edge'); closeMobileMenu()" data-key="nav-solution-edge">边缘计算与IoT</a>
-                </div>
-            </div>
+            
+<div id="sub-solutions" class="hidden">
+    <div class="flex items-center space-x-3 mb-4">
+        <button class="text-gray-700" data-back><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
+        <h3 class="text-xl font-semibold" data-key="nav-solutions">解决方案｜A组</h3>
+    </div>
+    <div class="flex flex-col space-y-3 pl-2">
+        <a href="#" class="mobile-nav-link text-lg text-gray-600" onclick="showPage('solutions'); closeMobileMenu()">AI 驱动的热管理（AI‑Driven Orchestration）</a>
+        <a href="#" class="mobile-nav-link text-lg text-gray-600" onclick="showPage('solutions'); closeMobileMenu()">混合液冷：DLC + RDHx 路线</a>
+        <a href="#" class="mobile-nav-link text-lg text-gray-600" onclick="showPage('solutions'); closeMobileMenu()">自由冷却 + 间接/直接绝热</a>
+        <a href="#" class="mobile-nav-link text-lg text-gray-600" onclick="showPage('solutions'); closeMobileMenu()">数字孪生辅助运维</a>
+    </div>
+</div>
+</div>
 
             <!-- Submenu: AI 数据中心操作系统 -->
             <div id="sub-os" class="hidden">
@@ -437,14 +443,14 @@
                         <!-- 方案 1: AI & HPC -->
                         <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-100 text-center transform hover:-translate-y-2 transition-transform duration-300">
                             <svg class="w-16 h-16 text-brand-primary mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m16-6h-2m2 6h-2M12 5V3m0 18v-2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42M5.64 5.64L4.22 4.22M19.78 19.78l-1.42-1.42M12 12a3 3 0 100-6 3 3 0 000 6z"></path></svg>
-                            <h3 class="text-2xl font-bold text-brand-dark mb-4" data-key="nav-solution-ai">人工智能与HPC</h3>
+                            <h3 class="text-2xl font-bold text-brand-dark mb-4" data-key="nav-solution-ai">前瞻课题（A组）</h3>
                             <p class="text-gray-700 mb-6" data-key="solution-ai-desc">为AI训练和HPC工作负载，部署高密度、低延迟的基础设施。</p>
                             <a href="#" onclick="showPage('solution-ai')" class="font-medium text-brand-primary hover:text-brand-dark" data-key="learn-more">了解更多 &rarr;</a>
                         </div>
                         <!-- 方案 2: 边缘计算 -->
                         <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-100 text-center transform hover:-translate-y-2 transition-transform duration-300">
                             <svg class="w-16 h-16 text-brand-primary mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.242-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            <h3 class="text-2xl font-bold text-brand-dark mb-4" data-key="nav-solution-edge">边缘计算与IoT</h3>
+                            <h3 class="text-2xl font-bold text-brand-dark mb-4" data-key="nav-solution-edge">（点击查看四大方向）</h3>
                             <p class="text-gray-700 mb-6" data-key="solution-edge-desc">在数据源头快速部署计算能力，支持实时物联网(IoT)应用。</p>
                             <a href="#" onclick="showPage('solution-edge')" class="font-medium text-brand-primary hover:text-brand-dark" data-key="learn-more">了解更多 &rarr;</a>
                         </div>
@@ -503,7 +509,7 @@
 
         <!-- 3.3 解决方案：AI & HPC -->
         <section id="solution-ai" class="page-content py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 class="text-4xl font-bold text-brand-dark mb-4" data-key="nav-solution-ai">人工智能与HPC</h1>
+            <h1 class="text-4xl font-bold text-brand-dark mb-4" data-key="nav-solution-ai">前瞻课题（A组）</h1>
             <p class="text-center text-xl text-gray-700 mt-16" data-key="page-in-construction">... 页面内容正在建设中 ...</p>
         </section>
 
@@ -999,6 +1005,66 @@
 </section>
 
 
+        <!-- 解决方案（重构A组） -->
+        <section id="solutions" class="page-content py-16 md:py-24">
+
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl font-bold text-brand-dark mb-4" data-key="nav-solutions">解决方案｜前瞻课题（近期可落地）</h1>
+                <p class="text-xl text-gray-700 mb-8">聚焦可商业化落地的AI热管理与液冷路线，支持快速评估与PoC部署。</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Card 1: AI-Driven Cooling Orchestration -->
+                    <div class="bg-white p-6 rounded-xl shadow border">
+                        <h3 class="text-2xl font-bold mb-2">AI 驱动的热管理<br><span class="text-base font-semibold text-brand-primary">AI‑Driven Cooling Orchestration</span></h3>
+                        <p class="text-gray-700 mb-4">预测 + 自适应控制，联动风冷/液冷/经济器，动态压差与供回水温，削峰降耗。</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1 mb-4">
+                            <li>AI 控制策略（极值寻优 / MPC）</li>
+                            <li>传感与边缘计算选型</li>
+                            <li>节能量化与ROI估算</li>
+                        </ul>
+                        <a href="#" onclick="showPage('platform-os')" class="text-brand-primary font-medium">结合 AIos 平台演示 →</a>
+                    </div>
+
+                    <!-- Card 2: Hybrid DLC + RDHx -->
+                    <div class="bg-white p-6 rounded-xl shadow border">
+                        <h3 class="text-2xl font-bold mb-2"><span id="sol-hybrid"></span>混合液冷路径：DLC + RDHx<br><span class="text-base font-semibold text-brand-primary">Hybrid DLC + RDHx Pathway</span></h3>
+                        <p class="text-gray-700 mb-4">在存量机房以RDHx兜底，在AI机架用直触冷板分流热量，平滑过渡到更高液冷占比。</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1 mb-4">
+                            <li>阶段蓝图：20% → 60% → &gt;80% 液冷</li>
+                            <li>CDU与二次回路方案</li>
+                            <li>泄漏安全与维保SOP</li>
+                        </ul>
+                        <a href="#" onclick="showPage('product-hd1000')" class="text-brand-primary font-medium">查看 HD‑1000 系列（DTC/RDHx） →</a>
+                    </div>
+
+                    <!-- Card 3: Free-Cooling + Adiabatic -->
+                    <div class="bg-white p-6 rounded-xl shadow border">
+                        <h3 class="text-2xl font-bold mb-2">自由冷却 + 间接/直接绝热联动<br><span class="text-base font-semibold text-brand-primary">Free‑Cooling + Indirect/Direct Adiabatic</span></h3>
+                        <p class="text-gray-700 mb-4">按气候区优化绝热方案，扩展自由冷却时段，年度能耗显著降低。</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1 mb-4">
+                            <li>WUE / PUE 联合评估</li>
+                            <li>喷淋/填料与水处理</li>
+                            <li>联动控制策略</li>
+                        </ul>
+                        <a href="#" onclick="showPage('platform-os')" class="text-brand-primary font-medium">在 AIos 中预置策略库 →</a>
+                    </div>
+
+                    <!-- Card 4: Digital-Twin for Thermal Ops -->
+                    <div class="bg-white p-6 rounded-xl shadow border">
+                        <h3 class="text-2xl font-bold mb-2">数字孪生辅助运维<br><span class="text-base font-semibold text-brand-primary">DC Digital‑Twin for Thermal Ops</span></h3>
+                        <p class="text-gray-700 mb-4">CFD/BEM 与实测融合，驱动布风、封闭与负载调度的闭环优化。</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1 mb-4">
+                            <li>热场孪生模型与告警场景</li>
+                            <li>节能改造优先级清单</li>
+                            <li>容量规划与What‑if</li>
+                        </ul>
+                        <a href="#" onclick="showPage('platform-os')" class="text-brand-primary font-medium">打开数字孪生 Demo →</a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
         <!-- 其他占位页面 -->
         <section id="product-hd200" class="page-content py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
             <h1 class="text-4xl font-bold text-brand-dark mb-4">HD Micro-Module 200</h1>
@@ -1009,7 +1075,7 @@
             <p class="text-center text-xl text-gray-700 mt-16" data-key="page-in-construction">... 页面内容正在建设中 ...</p>
         </section>
         <section id="solution-edge" class="page-content py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 class="text-4xl font-bold text-brand-dark mb-4" data-key="nav-solution-edge">边缘计算与IoT</h1>
+            <h1 class="text-4xl font-bold text-brand-dark mb-4" data-key="nav-solution-edge">（点击查看四大方向）</h1>
             <p class="text-center text-xl text-gray-700 mt-16" data-key="page-in-construction">... 页面内容正在建设中 ...</p>
         </section>
         <section id="about" class="page-content py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
