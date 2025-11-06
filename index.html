@@ -214,65 +214,100 @@
         
         <!-- 移动端导航链接 -->
         <nav class="flex flex-col space-y-5">
-            <a href="#" class="mobile-nav-link text-xl text-gray-800" data-page="home" data-key="nav-home">首页</a>
-            
-            <div class="text-xl text-gray-800">
-                <span data-key="nav-products">产品中心</span>
-                <div class="flex flex-col pl-4 mt-2 space-y-3">
-                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="platform-os" onclick="showPage('platform-os')">AIos 软件平台</a>
-                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="product-hd200">HD Micro-Module 200</a>
-                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="product-hd300">HD Micro-Module 300 & 400</a>
-                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="product-hd1000">HD Micro-Module 1000 系列</a>
+        <!-- 移动端导航链接 (Drilldown) -->
+        <nav class="space-y-5">
+            <!-- Root level -->
+            <div id="mobile-root" class="flex flex-col space-y-5">
+                <a href="#" class="mobile-nav-link text-xl text-gray-800" data-page="home" data-key="nav-home" onclick="showPage('home'); closeMobileMenu()">首页</a>
+
+                <button class="w-full text-left text-xl text-gray-800 flex items-center justify-between" data-submenu-target="sub-products">
+                    <span data-key="nav-products">产品中心</span>
+                    <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
+
+                <button class="w-full text-left text-xl text-gray-800 flex items-center justify-between" data-submenu-target="sub-solutions">
+                    <span data-key="nav-solutions">解决方案</span>
+                    <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
+
+                <button class="w-full text-left text-xl text-gray-800 flex items-center justify-between" data-submenu-target="sub-os">
+                    <span data-key="nav-os">AI 数据中心操作系统</span>
+                    <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
+
+                <button class="w-full text-left text-xl text-gray-800 flex items-center justify-between" data-submenu-target="sub-partners">
+                    <span data-key="nav-partners">合作伙伴</span>
+                    <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
+
+                <a href="#" class="mobile-nav-link text-xl text-gray-800" data-page="about" data-key="nav-about" onclick="showPage('about'); closeMobileMenu()">关于我们</a>
+
+                <a href="#" class="mobile-nav-link text-xl text-white font-medium bg-brand-accent py-3 px-6 rounded-full mt-2 text-center" data-page="contact" data-key="nav-contact" onclick="showPage('contact'); closeMobileMenu()">
+                    联系我们
+                </a>
+
+                <!-- 语言 (简/EN) 放在根级 -->
+                <div class="text-lg font-medium text-center pt-2 space-x-2 lang-switcher">
+                    <a href="#" class="text-gray-500 hover:text-brand-primary" onclick="switchLanguage('EN')">EN</a>
+                    <span class="text-gray-300">|</span>
+                    <a href="#" class="text-brand-primary font-semibold" onclick="switchLanguage('ZH')">简</a>
                 </div>
             </div>
-            
-            <div class="text-xl text-gray-800">
-                <span data-key="nav-solutions">解决方案</span>
-                <div class="flex flex-col pl-4 mt-2 space-y-3">
-                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="solution-ai" data-key="nav-solution-ai">人工智能与HPC</a>
-                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="solution-edge" data-key="nav-solution-edge">边缘计算与IoT</a>
+
+            <!-- Submenu: 产品中心 -->
+            <div id="sub-products" class="hidden">
+                <div class="flex items-center space-x-3 mb-4">
+                    <button class="text-gray-700" data-back><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
+                    <h3 class="text-xl font-semibold" data-key="nav-products">产品中心</h3>
+                </div>
+                <div class="flex flex-col space-y-3 pl-2">
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="platform-os" onclick="showPage('platform-os'); closeMobileMenu()">AIos 软件平台</a>
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="product-hd200" onclick="showPage('product-hd200'); closeMobileMenu()">HD Micro-Module 200</a>
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="product-hd300" onclick="showPage('product-hd300'); closeMobileMenu()">HD Micro-Module 300 & 400</a>
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="product-hd1000" onclick="showPage('product-hd1000'); closeMobileMenu()">HD Micro-Module 1000 系列</a>
                 </div>
             </div>
 
-
-            <div class="text-xl text-gray-800">
-                <span data-key="nav-os">AI 数据中心操作系统</span>
-                <div class="flex flex-col pl-4 mt-2 space-y-3">
-                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="platform-os" onclick="showPage('platform-os')" data-key="nav-os-overview">平台总览 / Overview</a>
-                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="platform-dcim1" onclick="showPage('platform-os')" data-key="nav-os-dcim1">DCIM 1.0（风冷优化）</a>
-                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="platform-dcim2" onclick="showPage('platform-os')" data-key="nav-os-dcim2">DCIM 2.0（混合液冷）</a>
-                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="platform-dcim3" onclick="showPage('platform-os')" data-key="nav-os-dcim3">DCIM 3.0（数字孪生）</a>
-                    <a href="#" class="mobile-nav-link text-lg text-brand-primary" data-page="platform-os" onclick="showPage('platform-os')" data-key="nav-os-demo">演示（站内）/ Live Demo</a>
+            <!-- Submenu: 解决方案 -->
+            <div id="sub-solutions" class="hidden">
+                <div class="flex items-center space-x-3 mb-4">
+                    <button class="text-gray-700" data-back><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
+                    <h3 class="text-xl font-semibold" data-key="nav-solutions">解决方案</h3>
+                </div>
+                <div class="flex flex-col space-y-3 pl-2">
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="solution-ai" onclick="showPage('solution-ai'); closeMobileMenu()" data-key="nav-solution-ai">人工智能与HPC</a>
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="solution-edge" onclick="showPage('solution-edge'); closeMobileMenu()" data-key="nav-solution-edge">边缘计算与IoT</a>
                 </div>
             </div>
 
-
-            <div class="text-xl text-gray-800">
-                <span data-key="nav-partners">合作伙伴</span>
-                <div class="flex flex-col pl-4 mt-2 space-y-3">
-                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="partner-xfusion" data-key="nav-partner-xfusion">我们与XFusion的合作</a>
-                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="partner-envicool" data-key="nav-partner-envicool">与 Envicool 的合作</a>
-                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="partner-clight" data-key="nav-partner-clight">与华电晨光的合作</a>
+            <!-- Submenu: AI 数据中心操作系统 -->
+            <div id="sub-os" class="hidden">
+                <div class="flex items-center space-x-3 mb-4">
+                    <button class="text-gray-700" data-back><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
+                    <h3 class="text-xl font-semibold" data-key="nav-os">AI 数据中心操作系统</h3>
+                </div>
+                <div class="flex flex-col space-y-3 pl-2">
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="platform-os" onclick="showPage('platform-os'); closeMobileMenu()" data-key="nav-os-overview">平台总览 / Overview</a>
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" onclick="showPage('platform-os'); closeMobileMenu()" data-key="nav-os-dcim1">DCIM 1.0（风冷优化）</a>
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" onclick="showPage('platform-os'); closeMobileMenu()" data-key="nav-os-dcim2">DCIM 2.0（混合液冷）</a>
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" onclick="showPage('platform-os'); closeMobileMenu()" data-key="nav-os-dcim3">DCIM 3.0（数字孪生）</a>
                 </div>
             </div>
 
-            <a href="#" class="mobile-nav-link text-xl text-gray-800" data-page="about" data-key="nav-about">关于我们</a>
-            
-            <a href="#" class="mobile-nav-link text-xl text-white font-medium bg-brand-accent py-3 px-6 rounded-full mt-6 text-center" data-page="contact" data-key="nav-contact">
-                联系我们
-            </a>
-            
-            <!-- 语言切换 (Mobile) -->
-            <div class="text-lg font-medium text-center pt-4 space-x-2 lang-switcher">
-                <a href="#" class="text-gray-500 hover:text-brand-primary" onclick="switchLanguage('FR')">FR</a>
-                <span class="text-gray-300">|</span>
-                <a href="#" class="text-gray-500 hover:text-brand-primary" onclick="switchLanguage('EN')">EN</a>
-                <span class="text-gray-300">|</span>
-                <a href="#" class="text-brand-primary font-semibold active" onclick="switchLanguage('ZH')">简</a>
-                <span class="text-gray-300">|</span>
-                <a href="#" class="text-gray-500 hover:text-brand-primary" onclick="switchLanguage('JA')">日</a>
+            <!-- Submenu: 合作伙伴 -->
+            <div id="sub-partners" class="hidden">
+                <div class="flex items-center space-x-3 mb-4">
+                    <button class="text-gray-700" data-back><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
+                    <h3 class="text-xl font-semibold" data-key="nav-partners">合作伙伴</h3>
+                </div>
+                <div class="flex flex-col space-y-3 pl-2">
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="partner-xfusion" onclick="showPage('partner-xfusion'); closeMobileMenu()" data-key="nav-partner-xfusion">我们与XFusion的合作</a>
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="partner-envicool" onclick="showPage('partner-envicool'); closeMobileMenu()" data-key="nav-partner-envicool">与 Envicool 的合作</a>
+                    <a href="#" class="mobile-nav-link text-lg text-gray-600" data-page="partner-clight" onclick="showPage('partner-clight'); closeMobileMenu()" data-key="nav-partner-clight">与华电晨光的合作</a>
+                </div>
             </div>
         </nav>
+</nav>
     </div>
 
     <!-- 3. 主体内容 (Main Content) -->
@@ -1436,6 +1471,90 @@
         });
       })();
     </script>
+
+
+<script>
+// Mobile drilldown menu
+(function(){
+  const mobileMenu = document.getElementById('mobile-menu');
+  if(!mobileMenu) return;
+
+  const root = mobileMenu.querySelector('#mobile-root');
+  const submenus = ['sub-products','sub-solutions','sub-partners','sub-os'].map(id => document.getElementById(id));
+
+  mobileMenu.addEventListener('click', function(e){
+    const target = e.target.closest('[data-submenu-target]');
+    if(target){
+      const id = target.getAttribute('data-submenu-target');
+      root.classList.add('hidden');
+      submenus.forEach(sm => sm && sm.classList.add('hidden'));
+      const panel = document.getElementById(id);
+      if(panel){ panel.classList.remove('hidden'); }
+    }
+    if(e.target.closest('[data-back]')){
+      submenus.forEach(sm => sm && sm.classList.add('hidden'));
+      root.classList.remove('hidden');
+    }
+  });
+
+  window.closeMobileMenu = function(){
+    const panel = document.getElementById('mobile-menu');
+    if(panel){ panel.classList.add('-translate-x-full'); }
+  }
+})();
+
+// Floating language switcher (EN / ZH)
+(function(){
+  // Create floating switcher
+  const sw = document.createElement('div');
+  sw.id = 'floating-lang';
+  sw.className = 'fixed z-50 bottom-5 right-5 bg-white/90 backdrop-blur border border-gray-200 rounded-full shadow-xl flex items-center overflow-hidden';
+  sw.innerHTML = '<button id="lang-EN" class="px-3 py-2 text-sm">EN</button><div class="w-px h-5 bg-gray-200"></div><button id="lang-ZH" class="px-3 py-2 text-sm font-semibold text-brand-primary">简</button>';
+  document.body.appendChild(sw);
+
+  function setActive(lang){
+    const en = document.getElementById('lang-EN');
+    const zh = document.getElementById('lang-ZH');
+    if(lang === 'EN'){
+      en.classList.add('font-semibold','text-brand-primary');
+      zh.classList.remove('font-semibold','text-brand-primary');
+    }else{
+      zh.classList.add('font-semibold','text-brand-primary');
+      en.classList.remove('font-semibold','text-brand-primary');
+    }
+  }
+
+  // Ensure switchLanguage exists
+  window.switchLanguage = window.switchLanguage || function(lang){
+    try{ localStorage.setItem('HDS_LANG', lang); }catch(e){}
+    window.__currentLang = lang;
+    // naive i18n: replace data-key elements from window.i18n maps if available
+    const dicts = window.i18n || {};
+    const map = dicts[lang] || dicts[(lang || '').toUpperCase()] || {};
+    document.documentElement.setAttribute('lang', lang === 'ZH' ? 'zh-CN' : 'en');
+    document.querySelectorAll('[data-key]').forEach(el => {
+      const key = el.getAttribute('data-key');
+      if(key && map[key]){ el.textContent = map[key]; }
+    });
+    setActive(lang);
+  };
+
+  // Bind
+  document.getElementById('lang-EN').addEventListener('click', function(e){ e.preventDefault(); switchLanguage('EN'); });
+  document.getElementById('lang-ZH').addEventListener('click', function(e){ e.preventDefault(); switchLanguage('ZH'); });
+
+  // Init
+  let lang = 'ZH';
+  try{ lang = localStorage.getItem('HDS_LANG') || 'ZH'; }catch(e){}
+  switchLanguage(lang);
+})();
+</script>
+<style>
+  /* Prevent floating switch overlap with footer buttons */
+  @media (max-width: 640px){
+    body { padding-bottom: 72px; }
+  }
+</style>
 
 </body>
 </html>
